@@ -1,6 +1,6 @@
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
-import { FloatingNav } from "@/components/ui/FloatingNavbar";
+import { FloatingNav } from "@/components/ui/floatingNavbar";
 
 const navItems = [
   { name: "Home", link: "#home" },
