@@ -6,7 +6,7 @@ const Footer = () => {
         <div className="flex flex-col items-center">
             <h1 className="heading lg:max-w-[45vw]">
             This is the Footer section
-            </h1>
+            </h1>      
         </div>
     </footer>
   )

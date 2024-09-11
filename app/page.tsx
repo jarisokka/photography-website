@@ -1,7 +1,6 @@
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import { FloatingNav } from "@/components/ui/FloatingNavbar";
-import { FaHome} from "react-icons/fa"
 
 const navItems = [
   { name: "Home", link: "#home" },
