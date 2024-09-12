@@ -4,6 +4,8 @@ import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import { FloatingNav } from "@/components/ui/floatingNavbar";
 
+export const runtime = "edge";
+
 const navItems = [
   { name: "Home", link: "#home" },
   { name: "Recent", link: "#recent" },
