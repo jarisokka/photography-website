@@ -2,28 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
+@layer base {
+  body, html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
   }
+}
 
-  .animated-svg #text{
-    animation: spin 10s linear infinite;
-    transform-origin: 50% 50%;
-  }
-  
-  /* .animated-svg #line {
-    animation: spin 10s linear infinite;
-    transform-origin: 50% 50%;
-  } */
+.animated-svg #text{
+  animation: spin 10s linear infinite;
+  transform-origin: 50% 50%;
+}
 
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
   }
+  to {
+    transform: rotate(360deg);
+  }
+}

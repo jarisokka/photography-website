@@ -18,8 +18,8 @@ const CustomButton = ({
       onClick={handleClick}
     >
       <span
-        className={`inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg
-            bg-transparent lg:text-base max-sm:text-xs dark:text-neutral-200 gap-2 ${otherClasses}`}
+        className={`px-3 inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg
+            bg-transparent md:text-base text-xs dark:text-neutral-200 gap-2 ${otherClasses}`}
       >
         {title}
         <span className="lg:text-lg sm:font-sm">{icon}</span>

@@ -19,7 +19,7 @@ const Hero = () => {
           <h1 className="text-5xl xl:text-7xl lg:text-6xl md:text-5xl font-bold dark:text-white">
             Chasing Light, Capturing Moments
           </h1>
-          <h2 className="font-light text-base lg:text-4xl md:text-2xl dark:text-neutral-200 py-4">
+          <h2 className="font-light text-xl lg:text-4xl md:text-2xl dark:text-neutral-200 py-4">
             Inspired by the wild, the vast, and the tiny details of nature
           </h2>
           <a href="#about">

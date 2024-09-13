@@ -12,20 +12,22 @@ const config: Config = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/**/*.{ts,tsx}",
   ],
   theme: {
     extend: {
       animation: {
-        shimmer: "shimmer 2s linear infinite",
+        scroll: "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) ease-in-out infinite",
       },
       keyframes: {
-        shimmer: {
-          from: {
-            backgroundPosition: "0 0",
+        scroll: {
+          '0%': {
+            transform: 'translateX(0)',
           },
-          to: {
-            backgroundPosition: "-200% 0",
+          '50%': {
+            transform: 'translateX(-25%)', // Intermediate step to add smoothness
+          },
+          '100%': {
+            transform: 'translateX(-50%)', // End position
           },
         },
       },

@@ -48,7 +48,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative w-full pt-10 pb-10" id="contact">
+    <footer className="relative w-full py-10" id="contact">
       <div className="pb-10 w-full flex justify-center items-center flex-col">
         <h1 className="text-4xl xl:text-6xl lg:text-5xl md:text-4xl font-bold dark:text-white">
           Reach Out Anytime

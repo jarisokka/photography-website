@@ -2,7 +2,8 @@
 import About from "@/components/About";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
-import { FloatingNav } from "@/components/ui/floatingNavbar";
+import Recent from "@/components/Recent";
+import FloatingNav from "@/components/ui/floatingNavbar";
 
 export const runtime = "edge";
 
@@ -20,6 +21,7 @@ export default function Home() {
       <div>
         <FloatingNav navItems={navItems} />
         <Hero />
+        <Recent />
         <About />
         <Footer />
       </div>

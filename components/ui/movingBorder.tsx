@@ -16,7 +16,8 @@ interface ButtonProps {
   borderClassName?: string;
   duration?: number;
   className?: string;
-  [key: string]: any; // For additional props
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
+  [key: string]: any;
 }
 
 export function Button({
@@ -26,32 +27,45 @@ export function Button({
   borderClassName,
   duration,
   className,
+  style,
   ...otherProps
 }: ButtonProps) {
   return (
     <Component
       className={cn(
-        "bg-transparent relative text-xl p-[1px] overflow-hidden md:col-span-2 md:row-span-1",
+        "relative text-xl p-[1px] overflow-hidden rounded-md",
         containerClassName
       )}
       {...otherProps}
+      style={{
+        borderRadius: "inherit",
+        ...style,
+      }}
     >
-      <div className="absolute inset-0 rounded-inherit">
+      <div
+        className="absolute inset-0"
+        style={{ borderRadius: "inherit", overflow: "hidden" }}
+      >
         <MovingBorder duration={duration} rx="30%" ry="30%">
           <div
             className={cn(
               "h-36 w-36 opacity-[0.8] bg-[radial-gradient(#FFFFFF_40%,transparent_60%)]",
               borderClassName
             )}
+            style={{ borderRadius: "inherit", backgroundColor: "inherit", }}
           />
         </MovingBorder>
       </div>
 
       <div
         className={cn(
-          "relative bg-slate-900/[0.] backdrop-blur-xl text-white flex items-center justify-center w-full h-full text-sm antialiased rounded-inherit",
+          "relative bg-slate-900/[0.] backdrop-blur-xl text-white flex items-center justify-center w-full h-full text-sm antialiased",
           className
         )}
+        style={{
+          borderRadius: "inherit",
+          backgroundColor: style?.backgroundColor || "rgba(65, 80, 95, 0.1)"
+        }}
       >
         {children}
       </div>
@@ -59,12 +73,12 @@ export function Button({
   );
 }
 
-
 interface MovingBorderProps {
   children: React.ReactNode;
   duration?: number;
   rx?: string;
   ry?: string;
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   [key: string]: any;
 }
 
@@ -77,10 +91,22 @@ export const MovingBorder = ({
 }: MovingBorderProps) => {
   const pathRef = useRef<SVGRectElement>(null);
   const progress = useMotionValue(0);
+  
+  // Ref to cache the total length of the path
+  const pathLength = useRef<number | null>(null);
 
   useAnimationFrame((time) => {
-    const length = pathRef.current?.getTotalLength() || 0;
+    if (!pathRef.current) return;
+
+    // Calculate the length only once and cache it
+    if (pathLength.current === null) {
+      pathLength.current = pathRef.current.getTotalLength();
+    }
+
+    const length = pathLength.current || 0;
     const pxPerMillisecond = length / duration;
+
+    // Update progress for the animation based on time
     progress.set((time * pxPerMillisecond) % length);
   });
 
@@ -98,6 +124,7 @@ export const MovingBorder = ({
         width="100%"
         height="100%"
         {...otherProps}
+        style={{ borderRadius: "inherit" }}
       >
         <rect
           fill="none"
@@ -115,6 +142,7 @@ export const MovingBorder = ({
           left: 0,
           display: "inline-block",
           transform,
+          borderRadius: "inherit",
         }}
       >
         {children}
