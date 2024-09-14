@@ -16,7 +16,7 @@ export const MovingCards = ({
     image: string;
     settings: string;
     title: string;
-    alt:string;
+    alt: string;
   }[];
   direction?: "left" | "right";
   speed?: "fast" | "normal" | "slow";
@@ -26,26 +26,82 @@ export const MovingCards = ({
   const containerRef = React.useRef<HTMLDivElement>(null);
   const scrollerRef = React.useRef<HTMLUListElement>(null);
 
+  const [isVisible, setIsVisible] = useState(false);
+  const [cloned, setCloned] = useState(false); // Track if items are cloned
+
   useEffect(() => {
-    addAnimation();
+    // Intersection Observer to detect visibility
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          } else {
+            setIsVisible(false);
+          }
+        });
+      },
+      {
+        threshold: 0.15, // Adjust to pause when at least 25% is out of view (customize as needed)
+      }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    // Clean up observer on unmount
+    return () => {
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current);
+      }
+    };
   }, []);
-  const [start, setStart] = useState(false);
+
+  useEffect(() => {
+    if (isVisible) {
+      if (!cloned) {
+        addAnimation(); // Start animation and clone items only once
+      }
+      resumeAnimation(); // Resume the animation when visible
+    } else {
+      pauseAnimation(); // Pause the animation when not visible
+    }
+  }, [isVisible]);
+
   function addAnimation() {
     if (containerRef.current && scrollerRef.current) {
       const scrollerContent = Array.from(scrollerRef.current.children);
 
-      scrollerContent.forEach((item) => {
-        const duplicatedItem = item.cloneNode(true);
-        if (scrollerRef.current) {
-          scrollerRef.current.appendChild(duplicatedItem);
-        }
-      });
+      // Clone items only once
+      if (!cloned) {
+        scrollerContent.forEach((item) => {
+          const duplicatedItem = item.cloneNode(true);
+          if (scrollerRef.current) {
+            scrollerRef.current.appendChild(duplicatedItem);
+          }
+        });
+
+        setCloned(true); // Mark items as cloned to prevent re-cloning
+      }
 
       getDirection();
       getSpeed();
-      setStart(true);
     }
   }
+
+  const pauseAnimation = () => {
+    if (scrollerRef.current) {
+      scrollerRef.current.style.setProperty("animation-play-state", "paused");
+    }
+  };
+
+  const resumeAnimation = () => {
+    if (scrollerRef.current) {
+      scrollerRef.current.style.setProperty("animation-play-state", "running");
+    }
+  };
+
   const getDirection = () => {
     if (containerRef.current) {
       if (direction === "left") {
@@ -61,6 +117,7 @@ export const MovingCards = ({
       }
     }
   };
+
   const getSpeed = () => {
     if (containerRef.current) {
       if (speed === "fast") {
@@ -72,6 +129,7 @@ export const MovingCards = ({
       }
     }
   };
+
   return (
     <div
       ref={containerRef}
@@ -84,7 +142,7 @@ export const MovingCards = ({
         ref={scrollerRef}
         className={cn(
           "flex min-w-full shrink-0 gap-4 py-4 w-max flex-nowrap",
-          start && "animate-scroll ",
+          cloned && "animate-scroll", // Only start animation after items are cloned
           pauseOnHover && "hover:[animation-play-state:paused]"
         )}
       >
@@ -107,14 +165,16 @@ export const MovingCards = ({
                   className="w-full h-full object-cover"
                 />
               </span>
-              <span className="absolute bottom-0 right-0 h-16 w-44 md:h-24 md:w-52 lg:h-32 lg:w-60 mr-5 mb-5 md:mr-10 md:mb-10 rounded-md"
+              <span
+                className="absolute bottom-0 right-0 h-16 w-44 md:h-24 md:w-52 lg:h-32 lg:w-60 mr-5 mb-5 md:mr-10 md:mb-10 rounded-md"
                 style={{
                   background: "rgba(65, 80, 95, 50%)",
-                }}>
-                  <div className="lg:p-5 md:p3 p-2 font-light text-xs md:text-base lg:text-lg">
-                    <p className="font-bold">{item.title}</p>
-                    <p>Settings: {item.settings}</p>
-                  </div>
+                }}
+              >
+                <div className="lg:p-5 md:p3 p-2 font-light text-xs md:text-base lg:text-lg">
+                  <p className="font-bold">{item.title}</p>
+                  <p>Settings: {item.settings}</p>
+                </div>
               </span>
             </blockquote>
           </li>

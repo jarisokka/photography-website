@@ -16,18 +16,12 @@ const config: Config = {
   theme: {
     extend: {
       animation: {
-        scroll: "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) ease-in-out infinite",
+        scroll: "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
       },
       keyframes: {
         scroll: {
-          '0%': {
-            transform: 'translateX(0)',
-          },
-          '50%': {
-            transform: 'translateX(-25%)', // Intermediate step to add smoothness
-          },
-          '100%': {
-            transform: 'translateX(-50%)', // End position
+          to: {
+            transform: "translate(calc(-50% - 0.5rem))",
           },
         },
       },
