@@ -17,6 +17,8 @@ interface VortexProps {
   rangeRadius?: number;
   backgroundColor?: string;
 }
+/* eslint-disable  @typescript-eslint/no-explicit-any */
+type AnyFunction = (...args: any[]) => any;
 
 const Vortex = React.memo((props: VortexProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -265,8 +267,9 @@ const Vortex = React.memo((props: VortexProps) => {
 Vortex.displayName = "Vortex";
 export default Vortex;
 
-function debounce(func: Function, wait: number) {
+function debounce(func: AnyFunction, wait: number) {
   let timeout: NodeJS.Timeout;
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   return (...args: any[]) => {
     const later = () => {
       clearTimeout(timeout);

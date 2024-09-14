@@ -12,7 +12,7 @@ const About = () => {
       <h2 className="font-light text-base lg:text-2xl md:text-xl dark:text-neutral-200 py-4">
         Get to Know Me Better
       </h2> 
-      <div className="w-full px-9 pt-3">
+      <div className="w-full md:px-6 px-3 pt-3">
         <Button
             duration={30000}
             style={{

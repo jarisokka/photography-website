@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "coverimage": "/images/finland/EV2A7874.jpg",
+    "category": "Landscapes",
+    "title": "Sceneries from Finland",
+    "description": "My favorite summer and autumn landscapes from Finland.",
+    "images": "finlandData"
+  },
+  {
+    "id": 2,
+    "coverimage": "/images/winter/QA1A2457.jpg",
+    "category": "Landscapes",
+    "title": "Wintertime in Finland",
+    "description": "My favorite wintertime landscapes from Finland.",
+    "images": "/winter-data"
+  },
+  {
+    "id": 3,
+    "coverimage": "/images/world/QA1A5097.jpg",
+    "category": "Landscapes",
+    "title": "Around the world",
+    "description": "Some memorable sceneries from my travels",
+    "images": "/world-data"
+  },
+  {
+    "id": 4,
+    "coverimage": "/images/macros/IMG_4427.jpg",
+    "category": "Macros",
+    "title": "Small and beautiful",
+    "description": "Macro world is so fascinating with all those small details.",
+    "images": "/macros-data"
+  },
+  {
+    "id": 5,
+    "coverimage": "/images/birds/QA1A1443.jpg",
+    "category": "Animals",
+    "title": "Fluffy beautiful birds",
+    "description": "Birds are so delicate and interesting creatures.",
+    "images": "birds-data"
+  },
+  {
+    "id": 6,
+    "coverimage": "/images/mammals/QA1A9765.jpg",
+    "category": "Animals",
+    "title": "Creatures of all size",
+    "description": "Furry creatures are fascinating and challenging to photograph",
+    "images": "/mammals-data"
+  }
+]
