@@ -20,7 +20,7 @@ interface ButtonProps {
   [key: string]: any;
 }
 
-export function Button({
+const Button = ({
   children,
   as: Component = "button",
   containerClassName,
@@ -29,7 +29,7 @@ export function Button({
   className,
   style,
   ...otherProps
-}: ButtonProps) {
+}: ButtonProps) => {
   return (
     <Component
       className={cn(
@@ -52,7 +52,7 @@ export function Button({
               "h-36 w-36 opacity-[0.8] bg-[radial-gradient(#FFFFFF_40%,transparent_60%)]",
               borderClassName
             )}
-            style={{ borderRadius: "inherit", backgroundColor: "inherit", }}
+            style={{ borderRadius: "inherit", backgroundColor: "inherit" }}
           />
         </MovingBorder>
       </div>
@@ -71,7 +71,7 @@ export function Button({
       </div>
     </Component>
   );
-}
+};
 
 interface MovingBorderProps {
   children: React.ReactNode;
@@ -82,7 +82,7 @@ interface MovingBorderProps {
   [key: string]: any;
 }
 
-export const MovingBorder = ({
+const MovingBorder = ({
   children,
   duration = 2000,
   rx,
@@ -91,7 +91,7 @@ export const MovingBorder = ({
 }: MovingBorderProps) => {
   const pathRef = useRef<SVGRectElement>(null);
   const progress = useMotionValue(0);
-  
+
   // Ref to cache the total length of the path
   const pathLength = useRef<number | null>(null);
 
@@ -150,3 +150,7 @@ export const MovingBorder = ({
     </>
   );
 };
+
+// Wrapping both components in React.memo
+export default React.memo(Button);
+export const MemoizedMovingBorder = React.memo(MovingBorder);

@@ -1,6 +1,6 @@
 import coverImage from '../assets/images/cover.jpg'
 import Image from 'next/image';
-import { Vortex } from './ui/vortex';
+import Vortex from './ui/vortexAnimation';
 import CustomButton from './ui/customButton';
 import { MdOutlineCamera } from "react-icons/md";
 
@@ -10,8 +10,8 @@ const Hero = () => {
       <div className="relative w-full h-screen overflow-hidden">
           <Vortex
           backgroundColor="black"
-          rangeY={800}
-          particleCount={200}
+          rangeY={300}
+          particleCount={60}
           baseHue={200}
           className="flex items-center flex-col justify-center px-2 md:px-10 py-4 w-full h-full"
         >
@@ -33,7 +33,7 @@ const Hero = () => {
         <Image
             src={coverImage}
             alt="cover_image"
-            className="absolute bottom-0 left-0 w-full h-full object-cover object-bottom opacity-65"
+            className="absolute bottom-0 left-0 w-full h-full object-cover object-bottom opacity-60"
           />
       </div>
     </section>

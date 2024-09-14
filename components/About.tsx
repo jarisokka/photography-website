@@ -1,11 +1,11 @@
 import React from 'react'
 import Image from 'next/image';
-import { Button } from "./ui/movingBorder";
+import Button from "./ui/movingBorder";
 import profileImage from "../public/profile.jpg"
 
 const About = () => {
   return (
-    <div className="py-12 w-full flex justify-center items-center flex-col">
+    <div className="py-12 w-full flex justify-center items-center flex-col" id="about">
       <h1 className="text-4xl xl:text-6xl lg:text-5xl md:text-4xl font-bold dark:text-white">
         Behind the Lens
       </h1>
