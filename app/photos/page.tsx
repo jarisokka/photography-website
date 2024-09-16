@@ -61,11 +61,11 @@ const PhotoSlideShow = () => {
 				<Image
 						src={images[currentIndex]?.image || ''} 
 						alt={images[currentIndex]?.alt || 'Image'} 
-						className="transition-all duration-500 ease-in-out"
+						className="object-contain"
 						style={
 							images[currentIndex]?.alignment === 'horizontal'
-								? { width: '100%', height: 'auto' }
-								: { width: 'auto', height: '100%' }
+								? { width: '100%', maxHeight: '80vh'  }
+								: { width: 'auto', height: '80vh' }
 						}
 						width={1500}
 						height={1000}
