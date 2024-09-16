@@ -12,7 +12,7 @@ const Footer = () => {
     {
       title: "Instagram",
       icon: (
-        <BsInstagram className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <BsInstagram className="h-full w-full text-neutral-300" />
       ),
       href: "https://instagram.com/jarisokka",
     },
@@ -20,28 +20,28 @@ const Footer = () => {
     {
       title: "500px",
       icon: (
-        <Fa500Px className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <Fa500Px className="h-full w-full text-neutral-300" />
       ),
       href: "https://500px.com/jarisokka",
     },
     {
       title: "Facebook",
       icon: (
-        <BsFacebook className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <BsFacebook className="h-full w-full text-neutral-300" />
       ),
       href: "https://facebook.com/jarisokka",
     },
     {
       title: "YouTube",
       icon: (
-        <BsYoutube className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <BsYoutube className="h-full w-full text-neutral-300" />
       ),
       href: "https://www.youtube.com/channel/UCrfBdIqXUqPBF2tdBc3cURA",
     },
     {
       title: "GitHub",
       icon: (
-        <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <IconBrandGithub className="h-full w-full text-neutral-300" />
       ),
       href: "https://github.com/jarisokka",
     },
@@ -50,10 +50,10 @@ const Footer = () => {
   return (
     <footer className="relative w-full py-10" id="contact">
       <div className="pb-10 w-full flex justify-center items-center flex-col">
-        <h1 className="text-4xl xl:text-6xl lg:text-5xl md:text-4xl font-bold dark:text-white">
+        <h1 className="text-4xl xl:text-6xl lg:text-5xl md:text-4xl font-bold text-white">
           Reach Out Anytime
         </h1>
-        <h2 className="font-light text-base lg:text-2xl md:text-xl dark:text-neutral-200 py-4">
+        <h2 className="font-light text-base lg:text-2xl md:text-xl text-neutral-200 py-4">
           Don’t hesitate to contact me
         </h2>
         <a href="mailto:ig.jarisokka@gmail.com">
@@ -64,7 +64,7 @@ const Footer = () => {
         </a>
       </div> 
       <div className="flex flex-col sm:flex-row items-center justify-evenly">
-        <h2 className="p-3 font-light text-base dark:text-neutral-200 text-center w-max[50%]">
+        <h2 className="p-3 font-light text-base text-neutral-200 text-center w-max[50%]">
           Copyright &copy; {new Date().getFullYear()} by Jari Sokka
         </h2>
         <div>
