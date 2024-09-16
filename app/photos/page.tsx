@@ -1,8 +1,15 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
+import { useSearchParams } from 'next/navigation'
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
-import data from "../../assets/data/finland-data.json"
+import finland from '../../assets/data/finland-data.json'
+import macros from '../../assets/data/macros-data.json'
+import birds from '../../assets/data/birds-data.json'
+import mammals from '../../assets/data/mammals-data.json'
+import winter from '../../assets/data/winter-data.json'
+import world from '../../assets/data/world-data.json'
+
 
 interface ImageData {
   id: number;
@@ -12,8 +19,27 @@ interface ImageData {
 }
 
 const PhotoSlideShow = () => {
-	const images: ImageData[] = data.finlandData;
+	const searchParams = useSearchParams();
+  const category = searchParams.get('category'); 
+	
+	const [images, setImages] = useState<ImageData[]>([]);
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
+
+	useEffect(() => {
+    if (category === 'finland') {
+      setImages(finland);
+    } else if (category === 'winter') {
+      setImages(winter);
+		} else if (category === 'world') {
+			setImages(world);
+		} else if (category === 'macros') {
+			setImages(macros);
+		} else if (category === 'birds') {
+			setImages(birds.birdsData);
+		} else if (category === 'mammals') {
+			setImages(mammals);
+		}
+  }, [category]);
 
 	const prevSlide = (): void => {
     setCurrentIndex(
@@ -25,14 +51,22 @@ const PhotoSlideShow = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
+	if (images.length === 0) {
+		return <div>Loading...</div>;
+	}
+	
   return (
     <div className="relative w-full mx-auto px-8 md:px-14 py-3 md:py-6">
-			<div className="m-5 overflow-hidden relative">
+			<div className="m-5 overflow-hidden relative flex justify-center items-center">
 				<Image
-						src={images[currentIndex].image}
-						alt={images[currentIndex].alt}
+						src={images[currentIndex]?.image || ''} 
+						alt={images[currentIndex]?.alt || 'Image'} 
 						className="transition-all duration-500 ease-in-out"
-						style={{ width: '100%', height: 'auto' }}
+						style={
+							images[currentIndex]?.alignment === 'horizontal'
+								? { width: '100%', height: 'auto' }
+								: { width: 'auto', height: '100%' }
+						}
 						width={1500}
 						height={1000}
 				/>

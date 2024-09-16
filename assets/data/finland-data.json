@@ -1,53 +1,52 @@
-{
-    "finlandData": [
-      {
-        "id": 1,
-        "image": "/images/finland/EV2A7874.jpg",
-        "alignment": "horizontal",
-        "alt": "Finland image 1 Jari Sokka"
-      },
-      {
-        "id": 2,
-        "image": "/images/finland/EV2A7955.jpg",
-        "alignment": "horizontal",
-        "alt": "Finland image 2 Jari Sokka"
-      },
-      {
-        "id": 3,
-        "image": "/images/finland/EV2A7565.jpg",
-        "alignment": "horizontal",
-        "alt": "Finland image 3 Jari Sokka"
-      },
-      {
-        "id": 4,
-        "image": "/images/finland/EV2A1958.jpg",
-        "alignment": "horizontal",
-        "alt": "Finland image 4 Jari Sokka"
-      },
-      {
-        "id": 5,
-        "image": "/images/finland/QA1A0574.jpg",
-        "alignment": "horizontal",
-        "alt": "Finland image 5 Jari Sokka"
-      },
-      {
-        "id": 6,
-        "image": "/images/finland/EV2A1109.jpg",
-        "alignment": "horizontal",
-        "alt": "Finland image 6 Jari Sokka"
-      },
-      {
-        "id": 7,
-        "image": "/images/finland/QA1A5378.jpg",
-        "alignment": "horizontal",
-        "alt": "Finland image 7 Jari Sokka"
-      },
-      {
-        "id": 8,
-        "image": "/images/finland/QA1A0603.jpg",
-        "alignment": "horizontal",
-        "alt": "Finland image 8 Jari Sokka"
-      }
-    ]
+[
+  {
+    "id": 1,
+    "image": "/images/finland/EV2A7874.jpg",
+    "alignment": "horizontal",
+    "alt": "Finland image 1 Jari Sokka"
+  },
+  {
+    "id": 2,
+    "image": "/images/finland/EV2A7955.jpg",
+    "alignment": "horizontal",
+    "alt": "Finland image 2 Jari Sokka"
+  },
+  {
+    "id": 3,
+    "image": "/images/finland/EV2A7565.jpg",
+    "alignment": "horizontal",
+    "alt": "Finland image 3 Jari Sokka"
+  },
+  {
+    "id": 4,
+    "image": "/images/finland/EV2A1958.jpg",
+    "alignment": "horizontal",
+    "alt": "Finland image 4 Jari Sokka"
+  },
+  {
+    "id": 5,
+    "image": "/images/finland/QA1A0574.jpg",
+    "alignment": "horizontal",
+    "alt": "Finland image 5 Jari Sokka"
+  },
+  {
+    "id": 6,
+    "image": "/images/finland/EV2A1109.jpg",
+    "alignment": "horizontal",
+    "alt": "Finland image 6 Jari Sokka"
+  },
+  {
+    "id": 7,
+    "image": "/images/finland/QA1A5378.jpg",
+    "alignment": "horizontal",
+    "alt": "Finland image 7 Jari Sokka"
+  },
+  {
+    "id": 8,
+    "image": "/images/finland/QA1A0603.jpg",
+    "alignment": "horizontal",
+    "alt": "Finland image 8 Jari Sokka"
   }
+]
+
   
