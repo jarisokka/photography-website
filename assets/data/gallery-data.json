@@ -4,7 +4,7 @@
     "coverimage": "/images/finland/EV2A7874.jpg",
     "category": "Landscapes",
     "title": "Sceneries from Finland",
-    "description": "My favorite summer and autumn landscapes from Finland.",
+    "description": "Discover the serene beauty of Finland through my favorite summer and autumn landscapes.",
     "data": "finland"
   },
   {
@@ -12,7 +12,7 @@
     "coverimage": "/images/winter/QA1A2457.jpg",
     "category": "Landscapes",
     "title": "Wintertime in Finland",
-    "description": "My favorite wintertime landscapes from Finland.",
+    "description": "Experience the magic of Finland’s winter wonderland, the snow-covered forests and pristine winter landscapes.",
     "data": "winter"
   },
   {
@@ -20,7 +20,7 @@
     "coverimage": "/images/world/QA1A5097.jpg",
     "category": "Landscapes",
     "title": "Around the world",
-    "description": "Some memorable sceneries from my travels",
+    "description": "Discover diverse landscapes from my global adventures, each photo capturing a memorable moment.",
     "data": "world"
   },
   {
@@ -28,7 +28,7 @@
     "coverimage": "/images/macros/IMG_4427.jpg",
     "category": "Macros",
     "title": "Small and beautiful",
-    "description": "Macro world is so fascinating with all those small details.",
+    "description": "Explore the captivating beauty of the macro world through its intricate details.",
     "data": "macros"
   },
   {
@@ -36,7 +36,7 @@
     "coverimage": "/images/birds/QA1A1443.jpg",
     "category": "Animals",
     "title": "Fluffy beautiful birds",
-    "description": "Birds are so delicate and interesting creatures.",
+    "description": "Experience the charm of delicate and fascinating birds, their unique beauty and grace.",
     "data": "birds"
   },
   {
@@ -44,7 +44,7 @@
     "coverimage": "/images/mammals/QA1A9765.jpg",
     "category": "Animals",
     "title": "Creatures of all size",
-    "description": "Furry creatures are fascinating and challenging to photograph",
+    "description": "Admire the unique charm of furry creatures, their fascinating behaviors and characteristics.",
     "data": "mammals"
   }
 ]

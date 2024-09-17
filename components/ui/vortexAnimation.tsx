@@ -165,7 +165,7 @@ const Vortex = React.memo((props: VortexProps) => {
 
   const renderGlow = useCallback((canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) => {
     ctx.save();
-    ctx.filter = "blur(4px) brightness(150%)";
+    ctx.filter = "blur(8px) brightness(150%)";
     ctx.globalCompositeOperation = "lighter";
     ctx.drawImage(canvas, 0, 0);
     ctx.restore();

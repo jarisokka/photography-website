@@ -11,8 +11,8 @@ export const runtime = "edge";
 const navItems = [
   { name: "Home", link: "#home" },
   { name: "Recent", link: "#recent" },
-  { name: "Gallery", link: "#gallery" },
   { name: "About", link: "#about" },
+  { name: "Gallery", link: "#gallery" },
   { name: "Contact", link: "#contact" },
 ];
 

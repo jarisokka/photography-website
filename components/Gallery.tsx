@@ -16,7 +16,7 @@ const Gallery = () => {
       <div className="w-full grid lg:grid-cols-2 grid-cols-1 gap-x-5 md:px-6 px-3">
         {data.map((item) => (
           <Link href={`/photos?category=${item.data}`} key={item.id} passHref>
-            <CardContainer key={item.id}>
+            <CardContainer key={item.id } className="w-full">
             <CardBody className="mx-2 relative group/card hover:shadow-2xl hover:shadow-[rgba(65,80,95,0.5)] bg-slate-700/[0.2] border-slate-700/[0.2] w-full h-auto p-10 border">
               <CardItem
                 translateZ="50"
@@ -37,7 +37,7 @@ const Gallery = () => {
               <CardItem
                 as="p"
                 translateZ="60"
-                className="font-light text-sm md:text-lg dark:text-neutral-200 md:py-4 pt-2"
+                className="font-light text-sm md:text-lg dark:text-neutral-200 min-h-32 md:py-4 pt-2"
               >
                 {item.description}
               </CardItem>

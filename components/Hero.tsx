@@ -22,7 +22,7 @@ const Hero = () => {
           <h2 className="font-light text-xl lg:text-4xl md:text-2xl dark:text-neutral-200 py-4">
             Inspired by the wild, the vast, and the tiny details of nature
           </h2>
-          <a href="#about">
+          <a href="#gallery">
               <CustomButton
                 title="Show my work"
                 icon={ <MdOutlineCamera/> }
