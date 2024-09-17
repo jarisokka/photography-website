@@ -11,6 +11,7 @@ import mammals from '../../assets/data/mammals-data.json'
 import winter from '../../assets/data/winter-data.json'
 import world from '../../assets/data/world-data.json'
 
+export const runtime = "edge";
 
 interface ImageData {
   id: number;
