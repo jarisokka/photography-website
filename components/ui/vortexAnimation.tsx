@@ -38,7 +38,7 @@ const Vortex = React.memo((props: VortexProps) => {
   const rangeTTL = 150;
   const baseSpeed = props.baseSpeed || 0.0;
   const rangeSpeed = props.rangeSpeed || 1.5;
-  const baseRadius = props.baseRadius || 1;
+  const baseRadius = props.baseRadius || 2;
   const rangeRadius = props.rangeRadius || 3;
   const baseHue = props.baseHue || 220;
   const rangeHue = 20;
@@ -152,7 +152,7 @@ const Vortex = React.memo((props: VortexProps) => {
       const ttl = particlePropsRef.current[i6];
       const speed = particlePropsRef.current[i7];
   
-      const normalizedSpeed = speed * 0.2; // Adjust this multiplier to keep speeds consistent
+      const normalizedSpeed = speed * 0.4; // Adjust this multiplier to keep speeds consistent
   
       const x2 = x + vx * normalizedSpeed;
       const y2 = y + vy * normalizedSpeed;
