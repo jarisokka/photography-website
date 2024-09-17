@@ -79,9 +79,22 @@ const Vortex = React.memo((props: VortexProps) => {
   const resize = useCallback(
     (canvas: HTMLCanvasElement) => {
       const { innerWidth, innerHeight } = window;
+      const prevWidth = canvas.width;
+      const prevHeight = canvas.height;
+  
       canvas.width = innerWidth;
       canvas.height = innerHeight;
+  
       centerRef.current = [0.5 * canvas.width, 0.5 * canvas.height];
+  
+      // If canvas size changes, adjust particle positions proportionally.
+      const widthRatio = canvas.width / prevWidth;
+      const heightRatio = canvas.height / prevHeight;
+  
+      for (let i = 0; i < particlePropsRef.current.length; i += particlePropCount) {
+        particlePropsRef.current[i] *= widthRatio; // Adjust x position
+        particlePropsRef.current[i + 1] *= heightRatio; // Adjust y position
+      }
     },
     []
   );
@@ -118,7 +131,7 @@ const Vortex = React.memo((props: VortexProps) => {
     (i: number, ctx: CanvasRenderingContext2D) => {
       const canvas = canvasRef.current;
       if (!canvas) return;
-
+  
       const i2 = i + 1;
       const i3 = i + 2;
       const i4 = i + 3;
@@ -127,33 +140,40 @@ const Vortex = React.memo((props: VortexProps) => {
       const i7 = i + 6;
       const i8 = i + 7;
       const i9 = i + 8;
-
+  
       const x = particlePropsRef.current[i];
       const y = particlePropsRef.current[i2];
+  
       const n = noise3D(x * xOff, y * yOff, tickRef.current * zOff) * noiseSteps * Math.PI * 2;
       const vx = (particlePropsRef.current[i3] + Math.cos(n)) / 2;
       const vy = (particlePropsRef.current[i4] + Math.sin(n)) / 2;
+  
       let life = particlePropsRef.current[i5];
       const ttl = particlePropsRef.current[i6];
       const speed = particlePropsRef.current[i7];
-      const x2 = x + vx * speed;
-      const y2 = y + vy * speed;
+  
+      const normalizedSpeed = speed * 0.2; // Adjust this multiplier to keep speeds consistent
+  
+      const x2 = x + vx * normalizedSpeed;
+      const y2 = y + vy * normalizedSpeed;
+  
       const radius = particlePropsRef.current[i8];
       const hue = particlePropsRef.current[i9];
-
+  
       drawParticle(x, y, x2, y2, life, ttl, radius, hue, ctx);
-
+  
       life++;
-
+  
       particlePropsRef.current.set([x2, y2, vx, vy, life], i);
-
+  
+      // Reinitialize particle if it moves out of bounds or its life exceeds TTL
       if (x > canvas.width || x < 0 || y > canvas.height || y < 0 || life > ttl) {
         initParticle(i);
       }
     },
     [noise3D, drawParticle, initParticle]
   );
-
+  
   const drawParticles = useCallback(
     (ctx: CanvasRenderingContext2D) => {
       for (let i = 0; i < particlePropsRef.current.length; i += particlePropCount) {
