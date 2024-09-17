@@ -1,8 +1,9 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'; 
 import { useSearchParams } from 'next/navigation'
-import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
+import { AiOutlineLeft, AiOutlineRight, AiOutlineClose } from 'react-icons/ai'
 import finland from '../../assets/data/finland-data.json'
 import macros from '../../assets/data/macros-data.json'
 import birds from '../../assets/data/birds-data.json'
@@ -83,6 +84,13 @@ const PhotoSlideShow = () => {
       >
         <AiOutlineRight className="text-neutral-300 text-2xl" style={{ strokeWidth: 8 }} />
       </button>
+			<Link href="/#gallery" passHref>
+				<button
+					className="absolute top-12 right-2 md:right-4 md:top-16 transform -translate-y-1/2 flex items-center justify-center h-8 w-8 md:h-10 md:w-10 bg-neutral-800 rounded-full border border-transparent hover:border-neutral-300"
+				>
+					<AiOutlineClose className="text-neutral-300 text-2xl" style={{ strokeWidth: 8 }} />
+				</button>
+			</Link>
 			<div className="flex justify-center mt-4">
         {images.map((_, index) => (
           <div

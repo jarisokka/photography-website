@@ -7,55 +7,55 @@
   },
   {
     "id": 2,
-    "image": "../images/mammals/QA1A9765.jpg",
+    "image": "/images/mammals/QA1A9765.jpg",
     "alignment": "horizontal",
     "alt": "mammals image 2 Jari Sokka"
   },
   {
     "id": 3,
-    "image": "../images/mammals/QA1A4001.jpg",
+    "image": "/images/mammals/QA1A4001.jpg",
     "alignment": "horizontal",
     "alt": "mammals image 3 Jari Sokka"
   },
   {
     "id": 4,
-    "image": "../images/mammals/EV2A8642.jpg",
+    "image": "/images/mammals/EV2A8642.jpg",
     "alignment": "horizontal",
     "alt": "mammals image 4 Jari Sokka"
   },
   {
     "id": 5,
-    "image": "../images/mammals/QA1A4603.jpg",
+    "image": "/images/mammals/QA1A4603.jpg",
     "alignment": "horizontal",
     "alt": "mammals image 5 Jari Sokka"
   },
   {
     "id": 6,
-    "image": "../images/mammals/QA1A2092.jpg",
+    "image": "/images/mammals/QA1A2092.jpg",
     "alignment": "horizontal",
     "alt": "mammals image 6 Jari Sokka"
   },
   {
     "id": 7,
-    "image": "../images/mammals/QE1A1371.jpg",
+    "image": "/images/mammals/QE1A1371.jpg",
     "alignment": "horizontal",
     "alt": "mammals image 7 Jari Sokka"
   },
   {
     "id": 8,
-    "image": "../images/mammals/QE1A4915.jpg",
+    "image": "/images/mammals/QE1A4915.jpg",
     "alignment": "horizontal",
     "alt": "mammals image 8 Jari Sokka"
   },
   {
     "id": 9,
-    "image": "../images/mammals/QE1A9394.jpg",
+    "image": "/images/mammals/QE1A9394.jpg",
     "alignment": "horizontal",
     "alt": "mammals image 9 Jari Sokka"
   },
   {
     "id": 10,
-    "image": "../images/mammals/QE1A6013.jpg",
+    "image": "/images/mammals/QE1A6013.jpg",
     "alignment": "horizontal",
     "alt": "mammals image 10 Jari Sokka"
   }
