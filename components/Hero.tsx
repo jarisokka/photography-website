@@ -11,7 +11,7 @@ const Hero = () => {
           <Vortex
           backgroundColor="black"
           rangeY={300}
-          particleCount={60}
+          particleCount={180}
           baseHue={200}
           className="flex items-center flex-col justify-center px-2 md:px-10 py-4 w-full h-full"
         >
