@@ -69,7 +69,7 @@ const FloatingNav: React.FC<FloatingNavProps> = ({ navItems }) => {
               key={`link-${idx}`}
               href={navItem.link}
               className={cn(
-                "relative dark:text-neutral-50 items-center flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500"
+                "relativetext-neutral-50 items-center flex space-x-1 hover:text-neutral-300"
               )}
             >
               <span className="text-sm cursor-pointer">{navItem.name}</span>

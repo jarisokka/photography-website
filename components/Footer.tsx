@@ -50,10 +50,10 @@ const Footer = () => {
   return (
     <footer className="relative w-full py-10" id="contact">
       <div className="pb-10 w-full flex justify-center items-center flex-col">
-        <h1 className="text-4xl xl:text-6xl lg:text-5xl md:text-4xl font-bold text-white">
+        <h1>
           Reach Out Anytime
         </h1>
-        <h2 className="font-light text-base lg:text-2xl md:text-xl text-neutral-200 py-4">
+        <h2>
           Don’t hesitate to contact me
         </h2>
         <a href="mailto:ig.jarisokka@gmail.com">
@@ -64,9 +64,9 @@ const Footer = () => {
         </a>
       </div> 
       <div className="flex flex-col sm:flex-row items-center justify-evenly">
-        <h2 className="p-3 font-light text-base text-neutral-200 text-center w-max[50%]">
+        <p className="p-3 text-center w-max[50%]">
           Copyright &copy; {new Date().getFullYear()} by Jari Sokka
-        </h2>
+        </p>
         <div>
           <FloatingDock items={links} />
         </div>             

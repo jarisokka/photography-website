@@ -8,7 +8,6 @@ export const MovingCards = ({
   items,
   direction = "left",
   speed = "fast",
-  pauseOnHover = true,
   className,
 }: {
   items: {
@@ -20,7 +19,6 @@ export const MovingCards = ({
   }[];
   direction?: "left" | "right";
   speed?: "fast" | "normal" | "slow";
-  pauseOnHover?: boolean;
   className?: string;
 }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -143,7 +141,6 @@ export const MovingCards = ({
         className={cn(
           "flex min-w-full shrink-0 gap-4 py-4 w-max flex-nowrap",
           cloned && "animate-scroll", // Only start animation after items are cloned
-          pauseOnHover && "hover:[animation-play-state:paused]"
         )}
       >
         {items.map((item) => (
@@ -154,7 +151,7 @@ export const MovingCards = ({
             <blockquote>
               <div
                 aria-hidden="true"
-                className="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
+                className="user-select-none z-[-1] pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
               ></div>
               <span>
                 <Image
@@ -168,7 +165,7 @@ export const MovingCards = ({
               <span
                 className="absolute bottom-0 right-0 h-16 w-44 md:h-24 md:w-52 lg:h-32 lg:w-60 mr-5 mb-5 md:mr-10 md:mb-10 rounded-md"
                 style={{
-                  background: "rgba(65, 80, 95, 50%)",
+                  background: "rgba(65, 80, 95, 0.5)",
                 }}
               >
                 <div className="lg:p-5 md:p3 p-2 font-light text-xs md:text-base lg:text-lg">

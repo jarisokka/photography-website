@@ -9,17 +9,16 @@ const Hero = () => {
     <section id="home">
       <div className="relative w-full h-screen overflow-hidden">
           <Vortex
-          backgroundColor="black"
           rangeY={400}
           particleCount={180}
           baseHue={200}
           className="flex items-center flex-col justify-center px-2 md:px-10 py-4 w-full h-full"
         >
         <div className="absolute top-1/4 transform text-center">
-          <h1 className="text-5xl xl:text-7xl lg:text-6xl md:text-5xl font-bold dark:text-white">
+          <h1 className="hero-title">
             Chasing Light, Capturing Moments
           </h1>
-          <h2 className="font-light text-xl lg:text-4xl md:text-2xl dark:text-neutral-200 py-4">
+          <h2 className="hero-subtitle">
             Inspired by the wild, the vast, and the tiny details of nature
           </h2>
           <a href="#gallery">

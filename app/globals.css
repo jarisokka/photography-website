@@ -8,6 +8,37 @@
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
+    background-color: black;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply py-12 w-full flex justify-center items-center flex-col;
+  }
+
+  .hero-title {
+    @apply text-5xl xl:text-7xl lg:text-6xl md:text-5xl font-bold text-white;
+  }
+
+  .hero-subtitle {
+    @apply font-light text-xl lg:text-4xl md:text-2xl text-neutral-200 py-4;
+  }
+
+  h1 {
+    @apply text-4xl xl:text-6xl lg:text-5xl md:text-4xl font-bold text-white;
+  }
+
+  h2 {
+    @apply font-light text-base lg:text-2xl md:text-xl text-neutral-200 py-4;
+  }
+
+  h3 {
+    @apply text-center mb-4 text-xl md:text-2xl font-bold;
+  }
+
+  p {
+    @apply font-light text-base md:text-lg text-neutral-200;
   }
 }
 

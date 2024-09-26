@@ -6,11 +6,11 @@ import Link from "next/link";
 
 const Gallery = () => {
   return (
-    <div className="py-12 w-full flex justify-center items-center flex-col" id="gallery">
-      <h1 className="text-4xl xl:text-6xl lg:text-5xl md:text-4xl font-bold dark:text-white">
+    <section className="section-container" id="gallery">
+      <h1>
         Moments in Time
       </h1>
-      <h2 className="font-light text-base lg:text-2xl md:text-xl dark:text-neutral-200 py-4">
+      <h2>
         Highlights from My Photography Adventures
       </h2>
       <div className="w-full grid lg:grid-cols-2 grid-cols-1 gap-x-5 md:px-6 px-3">
@@ -19,6 +19,7 @@ const Gallery = () => {
             <CardContainer key={item.id } className="w-full">
             <CardBody className="mx-2 relative group/card hover:shadow-2xl hover:shadow-[rgba(65,80,95,0.5)] bg-slate-700/[0.2] border-slate-700/[0.2] w-full h-auto p-10 border">
               <CardItem
+                as="h3"
                 translateZ="50"
                 className="text-xl md:text-2xl font-bold md:pb-1"
               >
@@ -37,7 +38,7 @@ const Gallery = () => {
               <CardItem
                 as="p"
                 translateZ="60"
-                className="font-light text-sm md:text-lg dark:text-neutral-200 min-h-32 md:py-4 pt-2"
+                className="font-light text-sm md:text-lg text-neutral-200 min-h-32 md:py-4 pt-2"
               >
                 {item.description}
               </CardItem>
@@ -55,7 +56,7 @@ const Gallery = () => {
         </Link> 
         ))}
       </div> 
-    </div>
+    </section>
   );
 }
 
