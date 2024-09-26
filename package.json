@@ -7,13 +7,15 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "pages:build": "npx @cloudflare/next-on-pages"
+    "pages:build": "npx @cloudflare/next-on-pages",
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "@tabler/icons-react": "^3.16.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.5.4",
     "next": "14.2.8",
+    "next-sitemap": "^4.2.3",
     "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18",

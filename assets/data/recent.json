@@ -1,34 +1,42 @@
 [
   {
     "id": 1,
-    "image": "/images/recent/image1.jpg",
-    "title": "Small details",
-    "settings": "100mm f/2.8 1/160s ISO100",
+    "image": "/images/recent/QA1A2258.jpg",
+    "title": "Misty path",
+    "settings": "30mm f/18 HDR ISO200",
     "alignment": "horizontal",
-    "alt": "macro plant"
+    "alt": "foggy swamp"
   },
   {
     "id": 2,
-    "image": "/images/recent/image2.jpg",
-    "title": "Sunrise magic",
-    "settings": "16mm f/14 0.4s ISO125",
+    "image": "/images/recent/QA1A2502.jpg",
+    "title": "Autumn bridge",
+    "settings": "16mm f/16 HDR ISO100",
     "alignment": "horizontal",
-    "alt": "sunrise colors"
+    "alt": "autumn bridge"
   },
   {
     "id": 3,
-    "image": "/images/recent/image3.jpg",
-    "title": "Sunrise pond",
-    "settings": "16mm f/14 1/320s ISO100",
+    "image": "/images/recent/QA1A2726.jpg",
+    "title": "Sunrise river",
+    "settings": "16mm f/14 HDR ISO320",
     "alignment": "horizontal",
-    "alt": "sunrise rays"
+    "alt": "sunrise river"
   },
   {
     "id": 4,
-    "image": "/images/recent/image4.jpg",
-    "title": "Red beauty",
-    "settings": "100mm f/4.5 1/100s ISO320",
+    "image": "/images/recent/QA1A7041.jpg",
+    "title": "Delicate beauty",
+    "settings": "100mm f/2.8 1/80s ISO100",
     "alignment": "horizontal",
     "alt": "flower field"
+  },
+  {
+    "id": 5,
+    "image": "/images/recent/QE1A9677.jpg",
+    "title": "Silent observer",
+    "settings": "560mm f/5.6 1/1600s ISO1000",
+    "alignment": "horizontal",
+    "alt": "winter owl"
   }
 ]

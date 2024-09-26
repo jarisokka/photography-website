@@ -46,6 +46,18 @@
     "image": "/images/world/QA1A8215.jpg",
     "alignment": "horizontal",
     "alt": "world image 8 Jari Sokka"
+  },
+  {
+    "id": 9,
+    "image": "/images/world/QA1A1592.jpg",
+    "alignment": "horizontal",
+    "alt": "world image 9 Jari Sokka"
+  },
+  {
+    "id": 10,
+    "image": "/images/world/QA1A9013.jpg",
+    "alignment": "horizontal",
+    "alt": "world image 10 Jari Sokka"
   }
   ]
   

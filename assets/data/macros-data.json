@@ -13,7 +13,7 @@
   },
   {
     "id": 3,
-    "image": "/images/macros/DC_QE1A9712.jpg",
+    "image": "/images/macros/image1.jpg",
     "alignment": "horizontal",
     "alt": "macro image 3 Jari Sokka"
   },
@@ -46,6 +46,18 @@
     "image": "/images/macros/EV2A7523.jpg",
     "alignment": "horizontal",
     "alt": "macro image 8 Jari Sokka"
+  },
+  {
+    "id": 9,
+    "image": "/images/macros/image4.jpg",
+    "alignment": "horizontal",
+    "alt": "macro image 9 Jari Sokka"
+  },
+  {
+    "id": 10,
+    "image": "/images/macros/QA1A2141.jpg",
+    "alignment": "horizontal",
+    "alt": "macro image 10 Jari Sokka"
   }
 ]
 

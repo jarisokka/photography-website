@@ -46,7 +46,18 @@
     "image": "/images/finland/QA1A0603.jpg",
     "alignment": "horizontal",
     "alt": "Finland image 8 Jari Sokka"
+  },
+  {
+    "id": 9,
+    "image": "/images/finland/image2.jpg",
+    "alignment": "horizontal",
+    "alt": "Finland image 9 Jari Sokka"
+  },
+  {
+    "id": 10,
+    "image": "/images/finland/QA1A2346.jpg",
+    "alignment": "horizontal",
+    "alt": "Finland image 10 Jari Sokka"
   }
 ]
-
-  
+ 

@@ -1,65 +1,75 @@
-{
-    "birdsData": [
-      {
-        "id": 1,
-        "image": "/images/birds/QA1A6686.jpg",
-        "alignment": "horizontal",
-        "alt": "birds image 1 Jari Sokka"
-      },
-      {
-        "id": 2,
-        "image": "/images/birds/QA1A1682.jpg",
-        "alignment": "horizontal",
-        "alt": "birds image 2 Jari Sokka"
-      },
-      {
-        "id": 3,
-        "image": "/images/birds/QE1A4512.jpg",
-        "alignment": "horizontal",
-        "alt": "birds image 3 Jari Sokka"
-      },
-      {
-        "id": 4,
-        "image": "/images/birds/QA1A1443.jpg",
-        "alignment": "horizontal",
-        "alt": "birds image 4 Jari Sokka"
-      },
-      {
-        "id": 5,
-        "image": "/images/birds/QA1A0284.jpg",
-        "alignment": "horizontal",
-        "alt": "birds image 5 Jari Sokka"
-      },
-      {
-        "id": 6,
-        "image": "/images/birds/QA1A5994.jpg",
-        "alignment": "horizontal",
-        "alt": "birds image 6 Jari Sokka"
-      },
-      {
-        "id": 7,
-        "image": "/images/birds/QA1A2510.jpg",
-        "alignment": "horizontal",
-        "alt": "birds image 7 Jari Sokka"
-      },
-      {
-        "id": 8,
-        "image": "/images/birds/QA1A1416.jpg",
-        "alignment": "horizontal",
-        "alt": "birds image 8 Jari Sokka"
-      },
-      {
-        "id": 9,
-        "image": "/images/birds/QA1A4077.jpg",
-        "alignment": "horizontal",
-        "alt": "birds image 9 Jari Sokka"
-      },
-      {
-        "id": 10,
-        "image": "/images/birds/QA1A1221.jpg",
-        "alignment": "horizontal",
-        "alt": "birds image 10 Jari Sokka"
-      }
-    ]
+[
+  {
+    "id": 1,
+    "image": "/images/birds/QA1A6686.jpg",
+    "alignment": "horizontal",
+    "alt": "birds image 1 Jari Sokka"
+  },
+  {
+    "id": 2,
+    "image": "/images/birds/QA1A1682.jpg",
+    "alignment": "horizontal",
+    "alt": "birds image 2 Jari Sokka"
+  },
+  {
+    "id": 3,
+    "image": "/images/birds/QE1A4512.jpg",
+    "alignment": "horizontal",
+    "alt": "birds image 3 Jari Sokka"
+  },
+  {
+    "id": 4,
+    "image": "/images/birds/QA1A1443.jpg",
+    "alignment": "horizontal",
+    "alt": "birds image 4 Jari Sokka"
+  },
+  {
+    "id": 5,
+    "image": "/images/birds/QA1A0284.jpg",
+    "alignment": "horizontal",
+    "alt": "birds image 5 Jari Sokka"
+  },
+  {
+    "id": 6,
+    "image": "/images/birds/QA1A5994.jpg",
+    "alignment": "horizontal",
+    "alt": "birds image 6 Jari Sokka"
+  },
+  {
+    "id": 7,
+    "image": "/images/birds/QA1A2510.jpg",
+    "alignment": "horizontal",
+    "alt": "birds image 7 Jari Sokka"
+  },
+  {
+    "id": 8,
+    "image": "/images/birds/QA1A1416.jpg",
+    "alignment": "horizontal",
+    "alt": "birds image 8 Jari Sokka"
+  },
+  {
+    "id": 9,
+    "image": "/images/birds/QA1A4077.jpg",
+    "alignment": "horizontal",
+    "alt": "birds image 9 Jari Sokka"
+  },
+  {
+    "id": 10,
+    "image": "/images/birds/QE1A2698.jpg",
+    "alignment": "horizontal",
+    "alt": "birds image 10 Jari Sokka"
+  },
+  {
+    "id": 11,
+    "image": "/images/birds/QE1A3339.jpg",
+    "alignment": "horizontal",
+    "alt": "birds image 11 Jari Sokka"
+  },
+  {
+    "id": 12,
+    "image": "/images/birds/QE1A3687.jpg",
+    "alignment": "horizontal",
+    "alt": "birds image 12 Jari Sokka"
   }
+]
   

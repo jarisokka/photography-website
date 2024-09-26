@@ -37,7 +37,7 @@ const PhotoSlideShow = () => {
 		} else if (category === 'macros') {
 			setImages(macros);
 		} else if (category === 'birds') {
-			setImages(birds.birdsData);
+			setImages(birds);
 		} else if (category === 'mammals') {
 			setImages(mammals);
 		}

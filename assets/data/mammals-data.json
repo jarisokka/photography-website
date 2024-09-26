@@ -58,5 +58,11 @@
     "image": "/images/mammals/QE1A6013.jpg",
     "alignment": "horizontal",
     "alt": "mammals image 10 Jari Sokka"
+  },
+  {
+    "id": 11,
+    "image": "/images/mammals/QE1A3191.jpg",
+    "alignment": "horizontal",
+    "alt": "mammals image 11 Jari Sokka"
   }
 ]
