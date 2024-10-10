@@ -1,4 +1,5 @@
 "use client";
+import World from "@/components/World";
 import About from "../components/About";
 import Footer from "../components/Footer";
 import Gallery from "../components/Gallery";
@@ -25,6 +26,7 @@ export default function Home() {
         <Recent />
         <About />
         <Gallery />
+        <World />
         <Footer />
       </div>
     </main>  
