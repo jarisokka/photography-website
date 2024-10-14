@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
+import { Geometry } from 'geojson';
 //import { geoCentroid } from "d3-geo";
 import geoData from "../../assets/data/countries-50m.json";
 import { Tooltip } from "react-tooltip";
@@ -10,7 +11,7 @@ interface GeographyProps {
   properties: {
     name: string;
   };
-  geometry: any;
+  geometry: Geometry;
 }
 
 interface WorldMapProps {
