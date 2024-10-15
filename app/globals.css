@@ -57,7 +57,7 @@
 }
 
 .animate-light {
-  animation: lightMotion 4s infinite ease-in-out;
+  animation: lightMotion 3s infinite ease-in-out;
 }
 
 @keyframes lightMotion {
@@ -71,5 +71,3 @@
     opacity: 0;
   }
 }
-
-

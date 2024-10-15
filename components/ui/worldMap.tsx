@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { ComposableMap, Geographies, Geography } from "react-simple-maps";
+import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
 import { Geometry } from 'geojson';
-//import { geoCentroid } from "d3-geo";
+//import { geoCentroid, geoOrthographic, geoMercator, GeoProjection } from "d3-geo";
 import geoData from "../../assets/data/countries-50m.json";
 import { Tooltip } from "react-tooltip";
+import { MdLocationOn } from "react-icons/md";
 import 'react-tooltip/dist/react-tooltip.css';
 
 interface GeographyProps {
@@ -18,16 +19,31 @@ interface WorldMapProps {
   visitedCountries: { name: string; region: string }[];
 }
 
+interface Location {
+  name: string;
+  coordinates: [number, number]; // Tuple with two elements: longitude, latitude
+  region: string;
+}
+
 const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries }) => {
 
   const regionZoomConfig: { [key: string]: { rotate: [number, number, number], coordinates: [number, number], scale: number } } = {
-    Europe: { rotate: [-10, -10, 0], coordinates: [10, 45], scale: 550 },
+    Europe: { rotate: [0, 0, 0], coordinates: [5, 57], scale: 350 },
     Africa: { rotate: [0, 0, 0], coordinates: [20, 0], scale: 300 },
-    Asia: { rotate: [-10, -25, -35], coordinates: [90, -10], scale: 400 }, 
-    NorthAmerica: { rotate: [100, -10, 0], coordinates: [-10, 40], scale: 400 },
+    Asia: { rotate: [0, 0, 0], coordinates: [100, 25], scale: 400 },
+    NorthAmerica: { rotate: [0, 0, 0], coordinates: [-100, 40], scale: 400 },
   };
 
-  const [position, setPosition] = useState({ rotate:[-11, 0, 0] as [number, number, number], coordinates: [0, 10] as [number, number], scale: 155 });
+    // Example list of locations
+    const locations: Location[] = [
+      { name: "Rome", coordinates: [12.4964, 41.9028], region: "Europe" },
+      { name: "Paris", coordinates: [2.3522, 48.8566], region: "Europe" },
+      { name: "Tokyo", coordinates: [139.6917, 35.6895], region: "Asia" }, 
+      { name: "London", coordinates: [-0.1180, 51.5099], region: "Europe" },
+      { name: "New York", coordinates: [-74.006, 40.7128], region: "NorthAmerica" }
+    ];
+
+  const [position, setPosition] = useState({ rotate:[0, 0, 0] as [number, number, number], coordinates: [0, 25] as [number, number], scale: 120 });
   const [isZoomedIn, setIsZoomedIn] = useState(false);
 
   const handleZoomIn = (geo: GeographyProps) => {
@@ -49,29 +65,32 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries }) => {
   };
 
   const handleReset = () => {
-    setPosition({ rotate:[-11, 0, 0], coordinates: [0, 8], scale: 155 });
+    setPosition({ rotate:[0, 0, 0], coordinates: [0, 25], scale: 120 });
     setIsZoomedIn(false);
   };
 
+  const handleLocationClick = (locationName: string) => {
+    console.log(`Clicked on location: ${locationName}`);
+  };
+
+  const adjustCoordinates = (coordinates: [number, number]): [number, number] => {
+    return [coordinates[0] + -1.5, coordinates[1] + 2.4];
+  };
+
   return (
-    <div className="bg-slate-700/[0.2] rounded-md">
+    <div className="relative bg-slate-700/[0.2] rounded-md">
       {isZoomedIn && (
           <button 
-            className="absolute top-4 right-4 h-12 w-50 overflow-hidden rounded-lg p-[3px] border border-white focus:outline-none hover:bg-[rgba(65,80,95,0.5)] z-10"
+            className="absolute top-10 right-4 ml-auto px-4 py-3 rounded-md bg-slate-700/[0.2] border border-white/[0.2] text-white text-xs font-bold hover:bg-[rgba(65,80,95,0.5)] z-10"
             onClick={handleReset}
-          >
-            <span
-              className="px-3 inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg
-                bg-transparent md:text-base text-xs text-neutral-200 gap-2"
-            >
-              Reset
-            </span> 
+          >Reset
           </button>
         )}
       <ComposableMap
         width={800}
         height={400}
-        style={{ width: "auto", height: "100%" }}
+        projection="geoMercator"
+        style={{ width: "100%", height: "auto" }}
         projectionConfig={{
           rotate: position.rotate,
           center: position.coordinates,
@@ -91,15 +110,16 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries }) => {
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
-                    stroke="#e5e5e5"
-                    strokeWidth={0.3}
+                    stroke="#bbbbbb"
+                    strokeWidth={0.2}
+                    
                     style={{
                       default: {
-                        fill: isVisited ? "#334155" : "#000000",
+                        fill: isVisited ? "#333333" : "none",
                         outline: "none"
                       },
                       hover: {
-                        fill: isVisited ? "#334155" : "#000000",
+                        fill: isVisited ? "#4f4f4f" : "#000000",
                         outline: "none"
                       },
                       pressed: { outline: "none" }
@@ -115,6 +135,17 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries }) => {
               })
             }
           </Geographies>
+
+          {isZoomedIn && locations.map((location, index) => (
+          <Marker key={index} coordinates={adjustCoordinates(location.coordinates)}>
+            <MdLocationOn
+              size={24}
+              fill="red"
+              style={{ cursor: 'pointer' }} 
+              onClick={() => handleLocationClick(location.name)}
+            />
+          </Marker>
+        ))}
       </ComposableMap>
 
       <Tooltip id="tooltip" place="top" style={{ backgroundColor: 'black', color: 'white' }} />
