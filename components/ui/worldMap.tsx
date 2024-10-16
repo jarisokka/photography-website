@@ -17,15 +17,17 @@ interface GeographyProps {
 
 interface WorldMapProps {
   visitedCountries: { name: string; region: string }[];
+  locations?: Location[];
 }
 
 interface Location {
   name: string;
   coordinates: [number, number]; // Tuple with two elements: longitude, latitude
   region: string;
+  imageUrl: string;
 }
 
-const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries }) => {
+const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries, locations }) => {
 
   const regionZoomConfig: { [key: string]: { rotate: [number, number, number], coordinates: [number, number], scale: number } } = {
     Europe: { rotate: [0, 0, 0], coordinates: [5, 57], scale: 350 },
@@ -33,15 +35,6 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries }) => {
     Asia: { rotate: [0, 0, 0], coordinates: [100, 25], scale: 400 },
     NorthAmerica: { rotate: [0, 0, 0], coordinates: [-100, 40], scale: 400 },
   };
-
-    // Example list of locations
-    const locations: Location[] = [
-      { name: "Rome", coordinates: [12.4964, 41.9028], region: "Europe" },
-      { name: "Paris", coordinates: [2.3522, 48.8566], region: "Europe" },
-      { name: "Tokyo", coordinates: [139.6917, 35.6895], region: "Asia" }, 
-      { name: "London", coordinates: [-0.1180, 51.5099], region: "Europe" },
-      { name: "New York", coordinates: [-74.006, 40.7128], region: "NorthAmerica" }
-    ];
 
   const [position, setPosition] = useState({ rotate:[0, 0, 0] as [number, number, number], coordinates: [0, 25] as [number, number], scale: 120 });
   const [isZoomedIn, setIsZoomedIn] = useState(false);
@@ -83,7 +76,7 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries }) => {
           <button 
             className="absolute top-10 right-4 ml-auto px-4 py-3 rounded-md bg-slate-700/[0.2] border border-white/[0.2] text-white text-xs font-bold hover:bg-[rgba(65,80,95,0.5)] z-10"
             onClick={handleReset}
-          >Reset
+          >Zoom Out
           </button>
         )}
       <ComposableMap
@@ -122,34 +115,67 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries }) => {
                         fill: isVisited ? "#4f4f4f" : "#000000",
                         outline: "none"
                       },
-                      pressed: { outline: "none" }
+                      pressed: { fill: isVisited ? "#4f4f4f" : "#000000", outline: "none" }
                     }}
                     onMouseEnter={(e: React.MouseEvent<SVGPathElement>) => {
                       const tooltipElement = e.currentTarget;
                       tooltipElement.setAttribute("data-tooltip-content", geo.properties.name);
                     }}
                     onClick={() => handleZoomIn(geo)} // Zoom in when clicked
-                    data-tooltip-id="tooltip"
+                    data-tooltip-id="tooltipCountry"
                   />
                 );
               })
             }
           </Geographies>
 
-          {isZoomedIn && locations.map((location, index) => (
+          {isZoomedIn && locations?.map((location, index) => (
           <Marker key={index} coordinates={adjustCoordinates(location.coordinates)}>
-            <MdLocationOn
-              size={24}
-              fill="red"
-              style={{ cursor: 'pointer' }} 
+            <g
+              data-tooltip-id="tooltipLocation"
+              onMouseEnter={(e) => {
+                const tooltip = e.currentTarget;
+                tooltip.setAttribute("data-tooltip-content", JSON.stringify({ name: location.name, imageUrl: location.imageUrl }));
+              }}
               onClick={() => handleLocationClick(location.name)}
-            />
+              style={{ outline: 'none' }} 
+            >
+            <foreignObject width="24" height="24">
+              <div className="icon-container">
+                <MdLocationOn
+                  size={24}
+                  fill="#e5e5e5"
+                  className="bounce"
+                  style={{ cursor: 'pointer' }}
+                />
+              </div>
+            </foreignObject>
+            </g>
           </Marker>
         ))}
       </ComposableMap>
 
-      <Tooltip id="tooltip" place="top" style={{ backgroundColor: 'black', color: 'white' }} />
+      <Tooltip id="tooltipCountry" place="top" style={{ backgroundColor: 'black', color: 'white' }} />
 
+      <Tooltip
+        id="tooltipLocation"
+        place="top"
+        render={({ content }) => {
+          if (!content) return null;
+          const { name, imageUrl } = JSON.parse(content);
+          return (
+            <div className="flex-col items-center justify-center text-center">
+                {imageUrl && (
+                <div>
+                  <img src={imageUrl} alt="location" className="w-12 h-12" />
+                </div>
+                )}
+              <div>{name}</div>
+            </div>
+          );
+        }}
+        style={{ backgroundColor: 'black', color: 'white', borderRadius: '8%' }}
+      />
     </div>
   );
 };

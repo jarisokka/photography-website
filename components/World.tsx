@@ -29,6 +29,13 @@ const visitedCountries = [
   { name: "Canada", region: "NorthAmerica" },
 ];
 
+const locationData = [
+  { name: "Rome", coordinates: [12.4964, 41.9028], region: "Europe", imageUrl: "/images/travel/EV2A2762.jpg" },
+  { name: "Paris", coordinates: [2.3522, 48.8566], region: "Europe", imageUrl: "/images/travel/EV2A2762.jpg" },
+  { name: "Tokyo", coordinates: [139.6917, 35.6895], region: "Asia", imageUrl: "/images/travel/EV2A2762.jpg" }, 
+  { name: "London", coordinates: [-0.1180, 51.5099], region: "Europe", imageUrl: "/images/travel/EV2A2762.jpg" },
+  { name: "New York", coordinates: [-74.006, 40.7128], region: "NorthAmerica", imageUrl: "/images/travel/EV2A2762.jpg" }
+];
 
 const World = () => {
   return (
@@ -41,7 +48,8 @@ const World = () => {
       </h2>
       <div className="flex justify-center items-center max-h-[80vh] w-full md:px-6 px-3 overflow-hidden">
         <div className="w-full rounded-md relative">
-          <WorldMap visitedCountries={visitedCountries}/>
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+          <WorldMap visitedCountries={visitedCountries} locations={locationData as any}/>
         </div>
       </div>
 
