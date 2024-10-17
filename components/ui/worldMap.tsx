@@ -23,7 +23,6 @@ interface WorldMapProps {
 interface Location {
   name: string;
   coordinates: [number, number]; // Tuple with two elements: longitude, latitude
-  region: string;
   imageUrl: string;
 }
 
