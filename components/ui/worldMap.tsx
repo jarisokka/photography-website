@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
+import React, { useEffect, useState } from 'react';
+import { ComposableMap, Geographies, Geography, Marker, ZoomableGroup } from "react-simple-maps";
 import { Geometry } from 'geojson';
 import geoData from "../../assets/data/countries-50m.json";
 import { Tooltip } from "react-tooltip";
@@ -36,6 +36,7 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries, locations }) => {
 
   const [position, setPosition] = useState({ rotate:[0, 0, 0] as [number, number, number], coordinates: [0, 25] as [number, number], scale: 120 });
   const [isZoomedIn, setIsZoomedIn] = useState(false);
+  const [animatedCount, setAnimatedCount] = useState(0);
 
   const handleZoomIn = (geo: GeographyProps) => {
     const countryName = geo.properties.name;
@@ -68,8 +69,39 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries, locations }) => {
     return [coordinates[0] + (-1.65), coordinates[1] + 2.0];
   };
 
+  useEffect(() => {
+    const targetCount = visitedCountries.length - 1;
+    let currentCount = 0;
+    const stepTime = 50; // How fast the number increases
+    const duration = 3000; // 3 seconds for full animation
+
+    const increment = targetCount / (duration / stepTime); // Increment per step
+
+    const animationInterval = setInterval(() => {
+      if (currentCount < targetCount) {
+        currentCount += increment;
+        setAnimatedCount(Math.round(currentCount));
+      } else {
+        clearInterval(animationInterval);
+      }
+    }, stepTime);
+
+    return () => clearInterval(animationInterval);
+  }, [visitedCountries.length, isZoomedIn]);
+
   return (
     <div className="relative bg-slate-700/[0.2] rounded-md">
+      {!isZoomedIn && (
+            <div className="absolute md:bottom-10 bottom-4 left-4 text-center">
+              <h2 className="p-0">
+                Countries visited
+              </h2>
+              <h1 className="md:text-6xl">
+                +{animatedCount}
+              </h1>
+            </div>
+        )}
+
       {isZoomedIn && (
           <button 
             className="absolute sm:top-10 sm:right-4 sm:left-auto top-4 left-4 px-4 py-3 rounded-md bg-slate-700/[0.2] border border-white/[0.2] text-white text-xs font-bold hover:bg-[rgba(65,80,95,0.5)] z-10"

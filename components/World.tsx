@@ -7,10 +7,10 @@ const World = () => {
   return (
     <section className="section-container" id="travels">
       <h1>
-        New section
+        Mapping My Adventures
       </h1>
       <h2>
-        Something here
+        Tracing my travels across the globe, and a few moments captured in photos
       </h2>
       <div className="flex justify-center items-center max-h-[80vh] w-full md:px-6 px-3 overflow-hidden">
         <div className="w-full rounded-md relative">
