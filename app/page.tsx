@@ -14,6 +14,7 @@ const navItems = [
   { name: "Recent", link: "#recent" },
   { name: "About", link: "#about" },
   { name: "Gallery", link: "#gallery" },
+  { name: "Travels", link: "#travels" },
   { name: "Contact", link: "#contact" },
 ];
 

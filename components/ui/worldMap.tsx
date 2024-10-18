@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
 import { Geometry } from 'geojson';
-//import { geoCentroid, geoOrthographic, geoMercator, GeoProjection } from "d3-geo";
 import geoData from "../../assets/data/countries-50m.json";
 import { Tooltip } from "react-tooltip";
 import { MdLocationOn } from "react-icons/md";
@@ -66,14 +65,14 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries, locations }) => {
   };
 
   const adjustCoordinates = (coordinates: [number, number]): [number, number] => {
-    return [coordinates[0] + -1.5, coordinates[1] + 2.4];
+    return [coordinates[0] + (-1.65), coordinates[1] + 2.0];
   };
 
   return (
     <div className="relative bg-slate-700/[0.2] rounded-md">
       {isZoomedIn && (
           <button 
-            className="absolute top-10 right-4 ml-auto px-4 py-3 rounded-md bg-slate-700/[0.2] border border-white/[0.2] text-white text-xs font-bold hover:bg-[rgba(65,80,95,0.5)] z-10"
+            className="absolute sm:top-10 sm:right-4 sm:left-auto top-4 left-4 px-4 py-3 rounded-md bg-slate-700/[0.2] border border-white/[0.2] text-white text-xs font-bold hover:bg-[rgba(65,80,95,0.5)] z-10"
             onClick={handleReset}
           >Zoom Out
           </button>
@@ -139,7 +138,7 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries, locations }) => {
               onClick={() => handleLocationClick(location.name)}
               style={{ outline: 'none' }} 
             >
-            <foreignObject width="24" height="24">
+            <foreignObject className="w-6 h-6">
               <div className="icon-container">
                 <MdLocationOn
                   size={24}
@@ -163,13 +162,13 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries, locations }) => {
           if (!content) return null;
           const { name, imageUrl } = JSON.parse(content);
           return (
-            <div className="flex-col items-center justify-center text-center">
+            <div className="flex flex-col items-center justify-center text-center w-20 h-24">
                 {imageUrl && (
-                <div>
-                  <img src={imageUrl} alt="location" className="w-12 h-12" />
+                <div className="flex items-center justify-center h-full">
+                  <img src={imageUrl} alt="location" className="w-16 h-16 object-cover" />
                 </div>
                 )}
-              <div>{name}</div>
+              <div className="w-full text-center text-sm mt-auto">{name}</div>
             </div>
           );
         }}
