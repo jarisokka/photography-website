@@ -1,4 +1,3 @@
-// lib/useIntersectionObserver.ts
 import { useEffect, useRef, useState } from 'react';
 
 const useIntersectionObserver = <T extends HTMLElement>() => {

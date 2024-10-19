@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useCallback } from "react";
 import { createNoise3D } from "simplex-noise";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import useIntersectionObserver from "../../lib/useIntersectionObserver";
 
 interface VortexProps {
   children?: React.ReactNode;
@@ -22,14 +23,14 @@ type AnyFunction = (...args: any[]) => any;
 
 const Vortex = React.memo((props: VortexProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
   const tickRef = useRef(0);
   const particlePropsRef = useRef<Float32Array>(
     new Float32Array((props.particleCount || 700) * 9)
   );
   const centerRef = useRef<[number, number]>([0, 0]);
   const animationRef = useRef<number | null>(null);
-  const isVisibleRef = useRef(false);
+
+  const { isIntersecting, elementRef: containerRef } = useIntersectionObserver<HTMLDivElement>();
 
   const particleCount = props.particleCount || 700;
   const particlePropCount = 9;
@@ -87,7 +88,7 @@ const Vortex = React.memo((props: VortexProps) => {
   
       centerRef.current = [0.5 * canvas.width, 0.5 * canvas.height];
   
-      // If canvas size changes, adjust particle positions proportionally.
+      // Adjust particle positions proportionally.
       const widthRatio = canvas.width / prevWidth;
       const heightRatio = canvas.height / prevHeight;
   
@@ -152,7 +153,7 @@ const Vortex = React.memo((props: VortexProps) => {
       const ttl = particlePropsRef.current[i6];
       const speed = particlePropsRef.current[i7];
   
-      const normalizedSpeed = speed * 0.4; // Adjust this multiplier to keep speeds consistent
+      const normalizedSpeed = speed * 0.4;
   
       const x2 = x + vx * normalizedSpeed;
       const y2 = y + vy * normalizedSpeed;
@@ -200,7 +201,7 @@ const Vortex = React.memo((props: VortexProps) => {
 
   const draw = useCallback(
     (canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) => {
-      if (!isVisibleRef.current) return;
+      if (!isIntersecting) return;
 
       tickRef.current++;
 
@@ -214,13 +215,12 @@ const Vortex = React.memo((props: VortexProps) => {
 
       animationRef.current = window.requestAnimationFrame(() => draw(canvas, ctx));
     },
-    [backgroundColor, drawParticles, renderGlow, renderToScreen]
+    [isIntersecting, backgroundColor, drawParticles, renderGlow, renderToScreen]
   );
 
   const setup = useCallback(() => {
     const canvas = canvasRef.current;
-    const container = containerRef.current;
-    if (canvas && container) {
+    if (canvas) {
       const ctx = canvas.getContext("2d");
       if (ctx) {
         resize(canvas);
@@ -230,42 +230,20 @@ const Vortex = React.memo((props: VortexProps) => {
     }
   }, [draw, initParticles, resize]);
 
-  const handleVisibility = useCallback((entries: IntersectionObserverEntry[]) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        isVisibleRef.current = true;
-        if (animationRef.current === null) setup();
-      } else {
-        isVisibleRef.current = false;
-        if (animationRef.current !== null) {
-          window.cancelAnimationFrame(animationRef.current);
-          animationRef.current = null;
-        }
-      }
-    });
-  }, [setup]);
-
   useEffect(() => {
-    const observer = new IntersectionObserver(handleVisibility, {
-      root: null,
-      threshold: 0.15 // Trigger when at least 15% of the component is visible
-    });
-    
-    const container = containerRef.current;
-    if (container) {
-      observer.observe(container);
+    if (isIntersecting && animationRef.current === null) {
+      setup();
+    } else if (!isIntersecting && animationRef.current !== null) {
+      window.cancelAnimationFrame(animationRef.current);
+      animationRef.current = null;
     }
-    
-    return () => {
-      if (container) observer.unobserve(container);
-    };
-  }, [handleVisibility]);
 
-  useEffect(() => {
-    const debouncedSetup = debounce(setup, 200);
-    window.addEventListener("resize", debouncedSetup);
-    return () => window.removeEventListener("resize", debouncedSetup);
-  }, [setup]);
+    return () => {
+      if (animationRef.current) {
+        window.cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [isIntersecting, setup]);
 
   return (
     <div className={cn("relative h-full w-full", props.containerClassName)}>
@@ -277,25 +255,12 @@ const Vortex = React.memo((props: VortexProps) => {
       >
         <canvas ref={canvasRef}></canvas>
       </motion.div>
-
+  
       <div className={cn("relative z-10", props.className)}>{props.children}</div>
     </div>
   );
 });
 
-
 Vortex.displayName = "Vortex";
-export default Vortex;
 
-function debounce(func: AnyFunction, wait: number) {
-  let timeout: NodeJS.Timeout;
-  /* eslint-disable  @typescript-eslint/no-explicit-any */
-  return (...args: any[]) => {
-    const later = () => {
-      clearTimeout(timeout);
-      func(...args);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-}
+export default Vortex;
