@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { ComposableMap, Geographies, Geography, Marker, ZoomableGroup } from "react-simple-maps";
+import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
 import { Geometry } from 'geojson';
 import geoData from "../../assets/data/countries-50m.json";
 import { Tooltip } from "react-tooltip";
 import { MdLocationOn } from "react-icons/md";
 import 'react-tooltip/dist/react-tooltip.css';
+import useIntersectionObserver from '../../lib/useIntersectionObserver';
 
 interface GeographyProps {
   rsmKey: string;
@@ -37,6 +38,7 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries, locations }) => {
   const [position, setPosition] = useState({ rotate:[0, 0, 0] as [number, number, number], coordinates: [0, 25] as [number, number], scale: 120 });
   const [isZoomedIn, setIsZoomedIn] = useState(false);
   const [animatedCount, setAnimatedCount] = useState(0);
+  const { isIntersecting, elementRef } = useIntersectionObserver<HTMLDivElement>();
 
   const handleZoomIn = (geo: GeographyProps) => {
     const countryName = geo.properties.name;
@@ -70,27 +72,29 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries, locations }) => {
   };
 
   useEffect(() => {
-    const targetCount = visitedCountries.length - 1;
-    let currentCount = 0;
-    const stepTime = 50; // How fast the number increases
-    const duration = 3000; // 3 seconds for full animation
-
-    const increment = targetCount / (duration / stepTime); // Increment per step
-
-    const animationInterval = setInterval(() => {
-      if (currentCount < targetCount) {
-        currentCount += increment;
-        setAnimatedCount(Math.round(currentCount));
-      } else {
-        clearInterval(animationInterval);
-      }
-    }, stepTime);
-
-    return () => clearInterval(animationInterval);
-  }, [visitedCountries.length, isZoomedIn]);
+    if (isIntersecting) {
+      const targetCount = visitedCountries.length - 1;
+      let currentCount = 0;
+      const stepTime = 50; // How fast the number increases
+      const duration = 3000; // 3 seconds for full animation
+  
+      const increment = targetCount / (duration / stepTime); // Increment per step
+  
+      const animationInterval = setInterval(() => {
+        if (currentCount < targetCount) {
+          currentCount += increment;
+          setAnimatedCount(Math.round(currentCount));
+        } else {
+          clearInterval(animationInterval);
+        }
+      }, stepTime);
+  
+      return () => clearInterval(animationInterval);
+    }
+  }, [isIntersecting, isZoomedIn]);
 
   return (
-    <div className="relative bg-slate-700/[0.2] rounded-md">
+    <div className="relative bg-slate-700/[0.2] rounded-md" ref={elementRef}>
       {!isZoomedIn && (
             <div className="absolute md:bottom-10 bottom-4 left-4 text-center">
               <h2 className="p-0">
