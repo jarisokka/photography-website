@@ -41,6 +41,7 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries, locations }) => {
   const [isZoomedIn, setIsZoomedIn] = useState(false);
   const [animatedCount, setAnimatedCount] = useState(0);
   const { isIntersecting, elementRef } = useIntersectionObserver<HTMLDivElement>();
+  const [loading, setLoading] = useState(true);
 
   const handleZoomIn = (geo: GeographyProps) => {
     const countryName = geo.properties.name;
@@ -63,10 +64,15 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries, locations }) => {
   const handleReset = () => {
     setPosition({ rotate:[0, 0, 0], coordinates: [0, 25], scale: 120 });
     setIsZoomedIn(false);
+    sessionStorage.removeItem('mapZoomState');
   };
 
   const handleViewImage = (imageUrl: string) => {
+    // Save scroll position
     sessionStorage.setItem('scrollPosition', window.scrollY.toString());
+
+    // Save the current map position (zoom state)
+    sessionStorage.setItem('mapZoomState', JSON.stringify(position));
     const url = `/photo?imageUrl=${encodeURIComponent(imageUrl)}`;
     router.push(url);
   };
@@ -95,7 +101,7 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries, locations }) => {
   
       return () => clearInterval(animationInterval);
     }
-  }, [isIntersecting, isZoomedIn]);
+  }, [loading, isIntersecting, isZoomedIn]);
 
   useEffect(() => {
     // Restore the scroll position
@@ -103,11 +109,20 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries, locations }) => {
     if (scrollPosition) {
       window.scrollTo(0, parseInt(scrollPosition, 10));
     }
+  
+    // Restore the map zoom state
+    const savedZoomState = sessionStorage.getItem('mapZoomState');
+    if (savedZoomState) {
+      setPosition(JSON.parse(savedZoomState));
+      setIsZoomedIn(true); // Indicate that the map is zoomed in
+    }
+    setLoading(false);
   }, []);
+
 
   return (
     <div className="relative bg-slate-700/[0.2] rounded-md" ref={elementRef}>
-      {!isZoomedIn && (
+      {!isZoomedIn && !loading && (
             <div className="absolute md:bottom-10 bottom-4 left-4 text-center">
               <h2 className="p-0">
                 Countries visited
@@ -117,7 +132,6 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries, locations }) => {
               </h1>
             </div>
         )}
-
       {isZoomedIn && (
           <button 
             className="absolute sm:top-10 sm:right-4 sm:left-auto top-4 left-4 px-4 py-3 rounded-md bg-slate-700/[0.2] border border-white/[0.2] text-white text-xs font-bold hover:bg-[rgba(65,80,95,0.5)] z-10"

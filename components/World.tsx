@@ -13,7 +13,7 @@ const World = () => {
         Tracing my travels across the globe, and a few moments captured in photos
       </h2>
       <div className="flex justify-center items-center max-h-[80vh] w-full md:px-6 px-3 overflow-hidden">
-        <div className="w-full rounded-md relative">
+        <div className="w-full rounded-md relative pt-5">
           {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           <WorldMap visitedCountries={visitedCountries} locations={locationData as any}/>
         </div>
