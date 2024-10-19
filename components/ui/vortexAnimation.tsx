@@ -18,8 +18,6 @@ interface VortexProps {
   rangeRadius?: number;
   backgroundColor?: string;
 }
-/* eslint-disable  @typescript-eslint/no-explicit-any */
-type AnyFunction = (...args: any[]) => any;
 
 const Vortex = React.memo((props: VortexProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);

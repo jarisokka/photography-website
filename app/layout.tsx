@@ -16,7 +16,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Jari Sokka Photography",
-  description: "Photography portfolio",
+  description: "Photography portfolio of Jari Sokka. Location Lahti, Finland",
 };
 
 export default function RootLayout({
@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning={true}>
       <head>
         <link rel='icon' href='/js-logo.png' />
       </head>
