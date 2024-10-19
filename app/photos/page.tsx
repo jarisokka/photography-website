@@ -21,7 +21,7 @@ interface ImageData {
 
 const PhotoSlideShow = () => {
   const searchParams = useSearchParams();
-  const category = searchParams.get('category'); 
+  const category = searchParams.get('category');
 	
 	const [images, setImages] = useState<ImageData[]>([]);
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -35,7 +35,6 @@ const PhotoSlideShow = () => {
       const aspectRatio = img.naturalWidth / img.naturalHeight;
       setIsHorizontal(aspectRatio > 1);
     };
-    console.log(isHorizontal)
   }, [currentIndex, images]);
 
 	useEffect(() => {
