@@ -13,7 +13,7 @@ const useIntersectionObserver = <T extends HTMLElement>() => {
       });
     };
 
-    const observer = new IntersectionObserver(observerCallback, { threshold: 0.25 });
+    const observer = new IntersectionObserver(observerCallback, { threshold: 0.1 });
 
     if (elementRef.current) {
       observer.observe(elementRef.current);

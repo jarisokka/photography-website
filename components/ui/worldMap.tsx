@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
 import { Geometry } from 'geojson';
 import geoData from "../../assets/data/countries-50m.json";
@@ -35,6 +36,7 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries, locations }) => {
     NorthAmerica: { rotate: [0, 0, 0], coordinates: [-100, 40], scale: 400 },
   };
 
+  const router = useRouter()
   const [position, setPosition] = useState({ rotate:[0, 0, 0] as [number, number, number], coordinates: [0, 25] as [number, number], scale: 120 });
   const [isZoomedIn, setIsZoomedIn] = useState(false);
   const [animatedCount, setAnimatedCount] = useState(0);
@@ -63,8 +65,10 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries, locations }) => {
     setIsZoomedIn(false);
   };
 
-  const handleLocationClick = (locationName: string) => {
-    console.log(`Clicked on location: ${locationName}`);
+  const handleViewImage = (imageUrl: string) => {
+    sessionStorage.setItem('scrollPosition', window.scrollY.toString());
+    const url = `/photo?imageUrl=${encodeURIComponent(imageUrl)}`;
+    router.push(url);
   };
 
   const adjustCoordinates = (coordinates: [number, number]): [number, number] => {
@@ -92,6 +96,14 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries, locations }) => {
       return () => clearInterval(animationInterval);
     }
   }, [isIntersecting, isZoomedIn]);
+
+  useEffect(() => {
+    // Restore the scroll position
+    const scrollPosition = sessionStorage.getItem('scrollPosition');
+    if (scrollPosition) {
+      window.scrollTo(0, parseInt(scrollPosition, 10));
+    }
+  }, []);
 
   return (
     <div className="relative bg-slate-700/[0.2] rounded-md" ref={elementRef}>
@@ -171,7 +183,7 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries, locations }) => {
                 const tooltip = e.currentTarget;
                 tooltip.setAttribute("data-tooltip-content", JSON.stringify({ name: location.name, imageUrl: location.imageUrl }));
               }}
-              onClick={() => handleLocationClick(location.name)}
+              onClick={() => handleViewImage(location.imageUrl)}
               style={{ outline: 'none' }} 
             >
             <foreignObject className="w-6 h-6">
