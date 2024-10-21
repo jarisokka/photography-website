@@ -16,6 +16,7 @@ const Gallery = () => {
     if (scrollPosition) {
       window.scrollTo(0, parseInt(scrollPosition, 10));
     }
+    sessionStorage.removeItem('scrollPosition');
   }, []);
 
   return (

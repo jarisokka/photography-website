@@ -121,7 +121,7 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries, locations }) => {
 
 
   return (
-    <div className="relative bg-slate-700/[0.2] rounded-md" ref={elementRef}>
+    <div className="relative rounded-md" ref={elementRef}>
       {!isZoomedIn && !loading && (
             <div className="absolute md:bottom-10 bottom-4 left-4 text-center">
               <h2 className="p-0">
@@ -134,7 +134,7 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries, locations }) => {
         )}
       {isZoomedIn && (
           <button 
-            className="absolute sm:top-10 sm:right-4 sm:left-auto top-4 left-4 px-4 py-3 rounded-md bg-slate-700/[0.2] border border-white/[0.2] text-white text-xs font-bold hover:bg-[rgba(65,80,95,0.5)] z-10"
+            className="absolute md:top-10 md:right-6 sm:left-auto top-4 left-4 px-4 py-3 rounded-md bg-slate-700/[0.1] border border-white/[0.8] text-white text-xs font-bold hover:bg-[rgba(65,80,95,1)] z-10 backdrop-blur-16 backdrop-saturate-180"
             onClick={handleReset}
           >Zoom Out
           </button>
@@ -173,9 +173,10 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries, locations }) => {
                       },
                       hover: {
                         fill: isVisited ? "#4f4f4f" : "#000000",
-                        outline: "none"
+                        outline: "none",
+                        cursor: "pointer"
                       },
-                      pressed: { fill: isVisited ? "#4f4f4f" : "#000000", outline: "none" }
+                      pressed: { fill: isVisited ? "#4f4f4f" : "#000000", outline: "none" },
                     }}
                     onMouseEnter={(e: React.MouseEvent<SVGPathElement>) => {
                       const tooltipElement = e.currentTarget;

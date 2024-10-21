@@ -14,7 +14,7 @@
 
 @layer components {
   .section-container {
-    @apply py-12 w-full flex justify-center items-center flex-col;
+    @apply py-8 md:py-10 w-full flex justify-center items-center flex-col;
   }
 
   .hero-title {
@@ -30,7 +30,7 @@
   }
 
   h2 {
-    @apply font-light text-base lg:text-2xl md:text-xl text-neutral-200 py-4;
+    @apply font-light text-base lg:text-2xl md:text-xl text-neutral-200 lg:py-4 md:py-2 py-1;
   }
 
   h3 {

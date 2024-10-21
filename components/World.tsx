@@ -9,11 +9,13 @@ const World = () => {
       <h1>
         Mapping My Adventures
       </h1>
-      <h2>
-        Tracing my travels across the globe, and a few moments captured in photos
-      </h2>
+      <div className="mx-6 md:mx-2 text-center">
+        <h2>
+          Tracing my travels across the globe, and a few moments captured in photos
+        </h2>
+      </div>
       <div className="flex justify-center items-center max-h-[80vh] w-full md:px-6 px-3 overflow-hidden">
-        <div className="w-full rounded-md relative pt-5">
+        <div className="w-full rounded-md relative mt-5 bg-slate-700/[0.2]">
           {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           <WorldMap visitedCountries={visitedCountries} locations={locationData as any}/>
         </div>
