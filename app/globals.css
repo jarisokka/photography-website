@@ -30,7 +30,7 @@
   }
 
   h2 {
-    @apply font-light text-base lg:text-2xl md:text-xl text-neutral-200 lg:py-4 md:py-2 py-1;
+    @apply font-light text-xl lg:text-3xl md:text-2xl text-neutral-200 lg:py-4 md:py-2 py-1;
   }
 
   h3 {
@@ -38,7 +38,7 @@
   }
 
   p {
-    @apply font-light text-base md:text-lg text-neutral-200;
+    @apply font-light text-base md:text-lg text-neutral-200 md:py-2 py-4;
   }
 }
 

@@ -134,7 +134,7 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries, locations }) => {
         )}
       {isZoomedIn && (
           <button 
-            className="absolute md:top-10 md:right-6 sm:left-auto top-4 left-4 px-4 py-3 rounded-md bg-slate-700/[0.1] border border-white/[0.8] text-white text-xs font-bold hover:bg-[rgba(65,80,95,1)] z-10 backdrop-blur-16 backdrop-saturate-180"
+            className="absolute md:top-10 md:right-6 sm:left-auto top-4 left-4 px-4 py-3 rounded-md bg-slate-700/[0.1] border border-white/[0.8] text-white text-xs font-bold hover:bg-[rgba(65,80,95,0.5)] z-10 backdrop-blur-16 backdrop-saturate-180"
             onClick={handleReset}
           >Zoom Out
           </button>
