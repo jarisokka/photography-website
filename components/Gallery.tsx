@@ -27,9 +27,11 @@ const Gallery = () => {
       <h2>
         Highlights from My Photography Adventures
       </h2>
-      <p className="mx-8 md:mx-6 text-center">
-        Welcome to my photography gallery, where each image tells a story of my explorations. From the quiet landscapes of Finland to the smallest details of nature, and from delicated birds to fascinating creatures, these moments capture the beauty of our world in its many forms. Whether you&apos;re drawn to serene sceneries, the intricacies of macro photography, or the wonders of wildlife, I hope these collections inspire you as they have inspired me.
-      </p>        
+      <div className="mx-8 md:mx-10 text-center">
+        <p>
+          Welcome to my photography gallery, where each image tells a story of my explorations. From the quiet landscapes of Finland to the smallest details of nature, and from delicated birds to fascinating creatures, these moments capture the beauty of our world in its many forms. Whether you&apos;re drawn to serene sceneries, the intricacies of macro photography, or the wonders of wildlife, I hope these collections inspire you as they have inspired me.
+        </p>  
+      </div> 
       <div className="w-full grid lg:grid-cols-2 grid-cols-1 gap-x-5 md:px-6 px-3">
         {data.map((item) => (
           <Link href={`/photos?category=${item.data}`} key={item.id} passHref>

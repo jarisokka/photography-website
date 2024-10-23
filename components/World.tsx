@@ -9,7 +9,7 @@ const World = () => {
       <h1>
         Mapping My Adventures
       </h1>
-      <div className="mx-8 md:mx-6 text-center">
+      <div className="mx-8 md:mx-10 text-center">
         <h2>
           Tracing my travels across the globe, and a few moments captured in photos
         </h2>
