@@ -16,32 +16,42 @@ export const runtime = "edge";
 interface ImageData {
   id: number;
   image: string;
-  alignment: string;
   alt: string;
 }
 
 const PhotoSlideShow = () => {
-	const searchParams = useSearchParams();
-  const category = searchParams.get('category'); 
+  const searchParams = useSearchParams();
+  const category = searchParams.get('category');
 	
 	const [images, setImages] = useState<ImageData[]>([]);
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [isHorizontal, setIsHorizontal] = useState(true);
+
+  useEffect(() => {
+    const img = new window.Image();
+    img.src = images[currentIndex]?.image || '';
+    
+    img.onload = () => {
+      const aspectRatio = img.naturalWidth / img.naturalHeight;
+      setIsHorizontal(aspectRatio > 1);
+    };
+  }, [currentIndex, images]);
 
 	useEffect(() => {
     if (category === 'finland') {
       setImages(finland);
     } else if (category === 'winter') {
       setImages(winter);
-		} else if (category === 'world') {
-			setImages(world);
-		} else if (category === 'macros') {
-			setImages(macros);
-		} else if (category === 'birds') {
-			setImages(birds);
-		} else if (category === 'mammals') {
-			setImages(mammals);
-		}
-  }, [category]);
+    } else if (category === 'world') {
+      setImages(world);
+    } else if (category === 'macros') {
+      setImages(macros);
+    } else if (category === 'birds') {
+      setImages(birds);
+    } else if (category === 'mammals') {
+      setImages(mammals);
+    }
+    }, [category]);
 
 	const prevSlide = (): void => {
     setCurrentIndex(
@@ -64,11 +74,11 @@ const PhotoSlideShow = () => {
 						src={images[currentIndex]?.image || ''} 
 						alt={images[currentIndex]?.alt || 'Image'} 
 						className="object-contain"
-						style={
-							images[currentIndex]?.alignment === 'horizontal'
-								? { width: '100%', maxHeight: '80vh'  }
-								: { width: 'auto', height: '80vh' }
-						}
+            style={
+              isHorizontal
+                ? { width: '100%', maxHeight: '80vh' }
+                : { width: 'auto', height: '80vh' }
+            }
 						width={1500}
 						height={1000}
 				/>

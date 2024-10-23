@@ -25,6 +25,12 @@ const config: Config = {
           },
         },
       },
+      backdropBlur: {
+        '16': '16px',
+      },
+      backdropSaturate: {
+        '180': '1.8',
+      },
     },
   },
   plugins: [addVariablesForColors],

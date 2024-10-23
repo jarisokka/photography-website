@@ -1,4 +1,5 @@
 "use client";
+import World from "@/components/World";
 import About from "../components/About";
 import Footer from "../components/Footer";
 import Gallery from "../components/Gallery";
@@ -13,6 +14,7 @@ const navItems = [
   { name: "Recent", link: "#recent" },
   { name: "About", link: "#about" },
   { name: "Gallery", link: "#gallery" },
+  { name: "Travels", link: "#travels" },
   { name: "Contact", link: "#contact" },
 ];
 
@@ -25,6 +27,7 @@ export default function Home() {
         <Recent />
         <About />
         <Gallery />
+        <World />
         <Footer />
       </div>
     </main>  

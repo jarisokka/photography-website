@@ -1,0 +1,25 @@
+[
+    { "name": "Prague", "coordinates": [14.418540, 50.073658], "imageUrl": "/images/travel/109_0942.jpg" },
+    { "name": "Barcelona", "coordinates": [0.154007, 41.390205], "imageUrl": "/images/travel/EV2A1042.jpg" }, 
+    { "name": "Gdańsk", "coordinates": [18.638306, 54.372158], "imageUrl": "/images/travel/EV2A6155.jpg" },
+    { "name": "Budapest", "coordinates": [19.040236, 47.497913], "imageUrl": "/images/travel/QA1A9501.jpg" },
+    { "name": "Quiraing", "coordinates": [-6.289220, 57.629031], "imageUrl": "/images/travel/QA1A0789.jpg" },
+    { "name": "Bruges", "coordinates": [3.22424, 51.20892], "imageUrl": "/images/travel/QA1A1985.jpg" },
+    { "name": "Lofoten", "coordinates": [13.750000, 67.366672], "imageUrl": "/images/travel/QA1A4540.jpg" },
+    { "name": "Oberhofen", "coordinates": [7.746, 46.985], "imageUrl": "/images/travel/QA1A5456.jpg" },
+    { "name": "Bled", "coordinates": [14.094058, 46.365173], "imageUrl": "/images/travel/QA1A6422.jpg" },
+    { "name": "Madeira", "coordinates": [-16.274998, 32.371666], "imageUrl": "/images/travel/QA1A8340.jpg" },
+    
+    { "name": "Shakaland", "coordinates": [30.481514, -28.779546], "imageUrl": "/images/travel/IMG_0186.jpg" },
+    { "name": "Kruger", "coordinates": [31.193704, -25.134405], "imageUrl": "/images/travel/IMG_0266.jpg" },
+    { "name": "Cape Point", "coordinates": [17.706907, -32.329763], "imageUrl": "/images/travel/IMG_8964.jpg" },
+  
+    { "name": "Tokyo", "coordinates": [139.6917, 35.6895], "imageUrl": "/images/travel/EV2A4275.jpg" },
+    { "name": "Kyoto", "coordinates": [135.768326, 35.011665], "imageUrl": "/images/travel/EV2A5041.jpg" }, 
+    { "name": "Angkor Wat", "coordinates": [103.866667, 13.4125], "imageUrl": "/images/travel/EV2A7329.jpg" },
+  
+    { "name": "Watkins Glen", "coordinates": [-76.87496, 42.37010], "imageUrl": "/images/travel/EV2A5942.jpg" },
+    { "name": "Marblehead Lighthouse", "coordinates": [-82.71214, 41.53669], "imageUrl": "/images/travel/EV2A6103.jpg" },
+    { "name": "Chicago", "coordinates": [-87.623177, 41.881832], "imageUrl": "/images/travel/EV2A6374.jpg" }
+  ]
+  

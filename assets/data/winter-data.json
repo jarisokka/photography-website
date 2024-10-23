@@ -2,55 +2,46 @@
   {
     "id": 1,
     "image": "/images/winter/QA1A8484.jpg",
-    "alignment": "horizontal",
     "alt": "Winter image 1 Jari Sokka"
   },
   {
     "id": 2,
     "image": "/images/winter/QA1A4645.jpg",
-    "alignment": "horizontal",
     "alt": "Winter image 2 Jari Sokka"
   },
   {
     "id": 3,
     "image": "/images/winter/QA1A4044.jpg",
-    "alignment": "horizontal",
     "alt": "Winter image 3 Jari Sokka"
   },
   {
     "id": 4,
     "image": "/images/winter/QA1A2457.jpg",
-    "alignment": "horizontal",
     "alt": "Winter image 4 Jari Sokka"
   },
   {
     "id": 5,
     "image": "/images/winter/QA1A8413.jpg",
-    "alignment": "horizontal",
     "alt": "Winter image 5 Jari Sokka"
   },
   {
     "id": 6,
     "image": "/images/winter/EV2A3202.jpg",
-    "alignment": "horizontal",
     "alt": "Winter image 6 Jari Sokka"
   },
   {
     "id": 7,
     "image": "/images/winter/EV2A2762.jpg",
-    "alignment": "horizontal",
     "alt": "Winter image 7 Jari Sokka"
   },
   {
     "id": 8,
     "image": "/images/winter/QA1A8588.jpg",
-    "alignment": "horizontal",
     "alt": "Winter image 8 Jari Sokka"
   },
   {
     "id": 9,
     "image": "/images/winter/QA1A6582.jpg",
-    "alignment": "horizontal",
     "alt": "Finland image 9 Jari Sokka"
   }
 ]

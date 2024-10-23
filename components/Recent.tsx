@@ -5,12 +5,14 @@ import recentPhotos from '../assets/data/recent.json';
 const Recent = () => {
   return (
     <section className="section-container" id="recent">
-      <h1>
-        Fresh Captures
-      </h1>
-      <h2>
-        Explore My Latest Work
-      </h2> 
+      <div className="mt-4 text-center">
+        <h1>
+          Fresh Captures
+        </h1>
+        <h2>
+          Explore My Latest Work
+        </h2> 
+      </div>
       <div className="block items-center justify-center overflow-hidden">
         <MovingCards
           items={recentPhotos}

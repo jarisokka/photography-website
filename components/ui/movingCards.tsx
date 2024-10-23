@@ -1,8 +1,9 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from 'next/image';
+import useIntersectionObserver from '../../lib/useIntersectionObserver';
 
 export const MovingCards = ({
   items,
@@ -21,43 +22,13 @@ export const MovingCards = ({
   speed?: "fast" | "normal" | "slow";
   className?: string;
 }) => {
-  const containerRef = React.useRef<HTMLDivElement>(null);
+  const { isIntersecting, elementRef } = useIntersectionObserver<HTMLDivElement>();
   const scrollerRef = React.useRef<HTMLUListElement>(null);
 
-  const [isVisible, setIsVisible] = useState(false);
-  const [cloned, setCloned] = useState(false); // Track if items are cloned
+  const [cloned, setCloned] = useState(false);
 
   useEffect(() => {
-    // Intersection Observer to detect visibility
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          } else {
-            setIsVisible(false);
-          }
-        });
-      },
-      {
-        threshold: 0.15, // Adjust to pause when at least 25% is out of view (customize as needed)
-      }
-    );
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    // Clean up observer on unmount
-    return () => {
-      if (containerRef.current) {
-        observer.unobserve(containerRef.current);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    if (isVisible) {
+    if (isIntersecting) {
       if (!cloned) {
         addAnimation(); // Start animation and clone items only once
       }
@@ -65,10 +36,10 @@ export const MovingCards = ({
     } else {
       pauseAnimation(); // Pause the animation when not visible
     }
-  }, [isVisible]);
+  }, [isIntersecting]);
 
   function addAnimation() {
-    if (containerRef.current && scrollerRef.current) {
+    if (scrollerRef.current) {
       const scrollerContent = Array.from(scrollerRef.current.children);
 
       // Clone items only once
@@ -79,7 +50,6 @@ export const MovingCards = ({
             scrollerRef.current.appendChild(duplicatedItem);
           }
         });
-
         setCloned(true); // Mark items as cloned to prevent re-cloning
       }
 
@@ -101,36 +71,30 @@ export const MovingCards = ({
   };
 
   const getDirection = () => {
-    if (containerRef.current) {
+    if (elementRef.current) {
       if (direction === "left") {
-        containerRef.current.style.setProperty(
-          "--animation-direction",
-          "forwards"
-        );
+        elementRef.current.style.setProperty("--animation-direction", "forwards");
       } else {
-        containerRef.current.style.setProperty(
-          "--animation-direction",
-          "reverse"
-        );
+        elementRef.current.style.setProperty("--animation-direction", "reverse");
       }
     }
   };
 
   const getSpeed = () => {
-    if (containerRef.current) {
+    if (elementRef.current) {
       if (speed === "fast") {
-        containerRef.current.style.setProperty("--animation-duration", "20s");
+        elementRef.current.style.setProperty("--animation-duration", "20s");
       } else if (speed === "normal") {
-        containerRef.current.style.setProperty("--animation-duration", "40s");
+        elementRef.current.style.setProperty("--animation-duration", "40s");
       } else {
-        containerRef.current.style.setProperty("--animation-duration", "80s");
+        elementRef.current.style.setProperty("--animation-duration", "80s");
       }
     }
   };
 
   return (
     <div
-      ref={containerRef}
+      ref={elementRef}
       className={cn(
         "scroller relative z-20 w-screen [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
         className
