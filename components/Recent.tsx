@@ -5,7 +5,7 @@ import recentPhotos from '../assets/data/recent.json';
 const Recent = () => {
   return (
     <section className="section-container" id="recent">
-      <div className="mt-4 text-center">
+      <div className="title-container mt-4">
         <h1>
           Fresh Captures
         </h1>
