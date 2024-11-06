@@ -17,6 +17,10 @@
     @apply py-8 md:py-10 w-full flex justify-center items-center flex-col;
   }
 
+  .title-container {
+    @apply mx-8 md:mx-10 text-center;
+  }
+
   .hero-title {
     @apply text-5xl xl:text-7xl lg:text-6xl md:text-5xl font-bold text-white;
   }

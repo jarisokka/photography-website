@@ -49,25 +49,27 @@ const Footer = () => {
 
   return (
     <footer className="relative w-full py-10" id="contact">
-      <div className="pb-10 w-full flex justify-center items-center flex-col">
+      <div className="md:pb-10 pb-16 w-full flex justify-center items-center flex-col">
         <h1>
           Reach Out Anytime
         </h1>
         <h2>
           Don’t hesitate to contact me
         </h2>
-        <a href="mailto:ig.jarisokka@gmail.com">
-          <CustomButton
-            title="Get in Touch"
-            icon={<FaRegEnvelope />}
-          />
-        </a>
+        <div className="md:mt-0 mt-4">
+          <a href="mailto:ig.jarisokka@gmail.com">
+            <CustomButton
+              title="Get in Touch"
+              icon={<FaRegEnvelope />}
+            />
+          </a>
+        </div>
       </div> 
-      <div className="flex flex-col sm:flex-row items-center justify-evenly">
-        <p className="p-3 text-center w-max[50%]">
+      <div className="flex flex-col md:mt-10 sm:flex-row items-center justify-evenly">
+        <p className="p-3 text-center w-max[50%] order-2 sm:order-1">
           Copyright &copy; {new Date().getFullYear()} by Jari Sokka
         </p>
-        <div>
+        <div className="order-1 sm:order-2">
           <FloatingDock items={links} />
         </div>             
       </div>

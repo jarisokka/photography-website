@@ -57,7 +57,7 @@ const FloatingNav: React.FC<FloatingNavProps> = ({ navItems }) => {
           animate={{ y: visible ? 0 : -100, opacity: visible ? 1 : 0 }}
           transition={{ duration: 0.2 }}
           className={cn(
-            "flex max-w-fit min-w-fit fixed z-[5000] top-10 inset-x-0 mx-auto px-10 py-5 rounded-lg border border-gray-200 shadow-md items-center justify-center space-x-4 pointer-events-auto"
+            "flex max-w-fit min-w-fit fixed z-[5000] top-10 inset-x-0 mx-auto sm:px-10 px-4 py-5 rounded-lg border border-gray-200 shadow-md items-center justify-center space-x-4 pointer-events-auto"
           )}
           style={{
             backdropFilter: "blur(16px) saturate(180%)",
@@ -72,7 +72,7 @@ const FloatingNav: React.FC<FloatingNavProps> = ({ navItems }) => {
                 "relativetext-neutral-50 items-center flex space-x-1 hover:text-neutral-300"
               )}
             >
-              <span className="text-sm cursor-pointer">{navItem.name}</span>
+              <span className="md:text-base sm:text-sm text-xs cursor-pointer">{navItem.name}</span>
             </Link>
           ))}
         </motion.div>

@@ -6,12 +6,15 @@ import profileImage from "../public/profile.jpg"
 const About = () => {
   return (
     <section className="section-container" id="about">
-      <h1>
-        Behind the Lens
-      </h1>
-      <h2>
-        Get to Know Me Better
-      </h2> 
+      <div className="title-container">
+        <h1>
+          Behind the Lens
+        </h1>
+        <h2>
+          Get to Know Me Better
+        </h2> 
+      </div>
+
       <div className="w-full md:px-6 px-3 pt-3">
         <Button
             duration={30000}

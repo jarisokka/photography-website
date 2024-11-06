@@ -127,14 +127,14 @@ export const MovingCards = ({
                 />
               </span>
               <span
-                className="absolute bottom-0 right-0 h-16 w-44 md:h-24 md:w-52 lg:h-32 lg:w-60 mr-5 mb-5 md:mr-10 md:mb-10 rounded-md"
+                className="absolute bottom-0 right-0 h-24 w-44 md:h-24 md:w-52 lg:h-32 lg:w-60 mr-5 mb-5 md:mr-10 md:mb-10 rounded-md"
                 style={{
                   background: "rgba(65, 80, 95, 0.5)",
                 }}
               >
-                <div className="lg:p-5 md:p3 p-2 font-light text-xs md:text-base lg:text-lg">
-                  <p className="font-bold">{item.title}</p>
-                  <p>Settings: {item.settings}</p>
+                <div className="ml-2 lg:ml-3">
+                  <p className="font-bold md:py-2 py-0 lg:text-lg text-base">{item.title}</p>
+                  <p className="font-light p-0 py-0 lg:text-lg text-base">Settings: {item.settings}</p>
                 </div>
               </span>
             </blockquote>
