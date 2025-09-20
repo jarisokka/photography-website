@@ -101,7 +101,7 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries, locations }) => {
   
       return () => clearInterval(animationInterval);
     }
-  }, [loading, isIntersecting, isZoomedIn]);
+  }, [loading, isIntersecting, isZoomedIn, visitedCountries.length]);
 
   useEffect(() => {
     // Restore the scroll position
