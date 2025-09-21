@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global scrollbar hiding - highest priority */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
+}
+
+*::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  background: transparent;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
 @layer base {
   body, html {
     margin: 0;
@@ -9,6 +29,7 @@
     box-sizing: border-box;
     scroll-behavior: smooth;
     background-color: black;
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
   }
 }
 
