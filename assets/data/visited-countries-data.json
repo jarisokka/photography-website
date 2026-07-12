@@ -6,7 +6,7 @@
   { "name": "Germany", "region": "Europe", "iso2": "DE" },
   { "name": "Czechia", "region": "Europe", "iso2": "CZ", "visitedYear": 2005 },
   { "name": "San Marino", "region": "Europe", "iso2": "SM" },
-  { "name": "Portugal", "region": "Europe", "iso2": "PT", "visitedYear": 2020 },
+  { "name": "Portugal", "region": "Europe", "iso2": "PT", "visitedYear": 2023 },
   { "name": "Spain", "region": "Europe", "iso2": "ES", "visitedYear": 2013 },
   { "name": "Belgium", "region": "Europe", "iso2": "BE", "visitedYear": 2024 },
   { "name": "Croatia", "region": "Europe", "iso2": "HR", "visitedYear": 2025 },
