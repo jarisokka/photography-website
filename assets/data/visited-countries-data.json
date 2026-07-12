@@ -1,5 +1,5 @@
 [
-  { "name": "Finland", "region": "Europe", "iso2": "FI" },
+  { "name": "Finland", "region": "Europe", "iso2": "FI", "isHome": true },
   { "name": "Sweden", "region": "Europe", "iso2": "SE" },
   { "name": "Norway", "region": "Europe", "iso2": "NO", "visitedYear": 2018 },
   { "name": "Denmark", "region": "Europe", "iso2": "DK" },
