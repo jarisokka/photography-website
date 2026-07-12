@@ -18,6 +18,18 @@ const regionZoomConfig: Record<Region, { coordinates: [number, number]; scale: n
 };
 const countryLabel = (country?: Country) => country?.name === 'United States of America' ? 'USA' : country?.name;
 
+// The map is always projected once at world scale; "flying" to a region is done by
+// animating a CSS transform on a wrapper <g> (GPU-composited, no re-projection).
+const MAP_W = 980, MAP_H = 500;
+const WORLD_CENTER = regionZoomConfig.World.coordinates;
+const WORLD_SCALE = regionZoomConfig.World.scale;
+const rawMercator = (lng: number, lat: number): [number, number] => [(lng * Math.PI) / 180, Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360))];
+const projectWorld = ([lng, lat]: [number, number]): [number, number] => {
+  const [rx, ry] = rawMercator(lng, lat);
+  const [crx, cry] = rawMercator(WORLD_CENTER[0], WORLD_CENTER[1]);
+  return [MAP_W / 2 + WORLD_SCALE * (rx - crx), MAP_H / 2 - WORLD_SCALE * (ry - cry)];
+};
+
 const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries, locations = [] }) => {
   const [activeRegion, setActiveRegion] = useState<Region>('World');
   const [selectedCountryName, setSelectedCountryName] = useState('Japan');
@@ -28,7 +40,13 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries, locations = [] })
   const visibleLocations = useMemo(() => activeRegion === 'World' ? [] : locations.filter((location) => visitedCountries.find((country) => country.iso2 === location.countryIso2)?.region === activeRegion), [activeRegion, locations, visitedCountries]);
   const recentCountries = useMemo(() => visitedCountries.filter((country) => locations.some((location) => location.countryIso2 === country.iso2)).sort((a, b) => (b.visitedYear ?? 0) - (a.visitedYear ?? 0)).slice(0, 3), [locations, visitedCountries]);
   const continentCount = new Set(visitedCountries.map((country) => country.region)).size;
-  const config = regionZoomConfig[activeRegion];
+  const countryByName = useMemo(() => new Map(visitedCountries.map((country) => [country.name, country])), [visitedCountries]);
+  const photographedIso = useMemo(() => new Set(locations.map((location) => location.countryIso2)), [locations]);
+
+  // Camera transform for the active region (translate + scale) applied to the map layer.
+  const flyScale = (regionZoomConfig[activeRegion].scale / WORLD_SCALE) * zoom;
+  const [regionX, regionY] = projectWorld(regionZoomConfig[activeRegion].coordinates);
+  const flyTransform = `translate(${MAP_W / 2 - flyScale * regionX}px, ${MAP_H / 2 - flyScale * regionY}px) scale(${flyScale})`;
 
   const selectCountry = (name: string) => {
     const country = visitedCountries.find((item) => item.name === name);
@@ -59,13 +77,18 @@ const WorldMap: React.FC<WorldMapProps> = ({ visitedCountries, locations = [] })
           <div className="hidden items-center gap-4 text-xs text-neutral-400 md:flex"><span className="flex items-center gap-2"><i className="h-2.5 w-2.5 rounded-full border border-[#87a6cc] bg-[#314a69]" />Visited</span><span className="flex items-center gap-2"><i className="h-2.5 w-2.5 rounded-full border border-[#a8c7e8] bg-[#4f6f9c]" />With photos</span></div>
         </div>
         <div className="relative overflow-hidden rounded-md border border-slate-700/[0.4] bg-slate-700/[0.2]">
-          <ComposableMap width={980} height={500} projection="geoMercator" className="h-auto w-full" projectionConfig={{ center: config.coordinates, scale: config.scale * zoom }}>
-            <Geographies geography={geoData}>{({ geographies }: { geographies: GeographyProps[] }) => geographies.filter((geo) => geo.properties.name !== 'Antarctica').map((geo) => {
-              const country = visitedCountries.find((item) => item.name === geo.properties.name);
-              const hasPhotos = Boolean(country && locations.some((location) => location.countryIso2 === country.iso2));
-              return <Geography key={geo.rsmKey} geography={geo} onClick={() => country && selectCountry(country.name)} style={{ default: { fill: country ? (hasPhotos ? '#4f6f9c' : '#314a69') : '#14202d', stroke: country ? (hasPhotos ? '#a8c7e8' : '#87a6cc') : '#243444', strokeWidth: country ? (hasPhotos ? .7 : .45) : .2, outline: 'none' }, hover: { fill: country ? '#6386b8' : '#1b2c3b', stroke: country ? '#c3ddf5' : '#243444', strokeWidth: country ? .9 : .2, outline: 'none', cursor: country ? 'pointer' : 'default' }, pressed: { outline: 'none' } }} />;
-            })}</Geographies>
-            {visibleLocations.map((location) => <Marker key={location.name} coordinates={location.coordinates}><circle r={4} fill="#a8c7e8" stroke="#eaf4ff" strokeWidth={1} /></Marker>)}
+          <ComposableMap width={MAP_W} height={MAP_H} projection="geoMercator" className="h-auto w-full" projectionConfig={{ center: WORLD_CENTER, scale: WORLD_SCALE }}>
+            <g style={{ transform: flyTransform, transformOrigin: '0px 0px', transition: 'transform 700ms cubic-bezier(0.22, 1, 0.36, 1)' }}>
+              <Geographies geography={geoData}>{({ geographies }: { geographies: GeographyProps[] }) => geographies.filter((geo) => geo.properties.name !== 'Antarctica').map((geo) => {
+                const country = countryByName.get(geo.properties.name);
+                const hasPhotos = Boolean(country && photographedIso.has(country.iso2));
+                return <Geography key={geo.rsmKey} geography={geo} vectorEffect="non-scaling-stroke" className={country ? 'map-country' : undefined} onClick={() => country && selectCountry(country.name)} style={{ default: { fill: country ? (hasPhotos ? '#4f6f9c' : '#314a69') : '#14202d', stroke: country ? (hasPhotos ? '#a8c7e8' : '#87a6cc') : '#243444', strokeWidth: country ? (hasPhotos ? .7 : .45) : .2, outline: 'none' }, hover: { fill: country ? '#6386b8' : '#1b2c3b', stroke: country ? '#c3ddf5' : '#243444', strokeWidth: country ? .9 : .2, outline: 'none', cursor: country ? 'pointer' : 'default' }, pressed: { outline: 'none' } }} />;
+              })}</Geographies>
+              {visibleLocations.map((location, index) => <Marker key={location.name} coordinates={location.coordinates}>
+                <circle className="map-marker-pulse" r={4 / flyScale} fill="#a8c7e8" style={{ animationDelay: `${450 + index * 80}ms` }} />
+                <circle className="map-marker-dot" r={4 / flyScale} fill="#a8c7e8" stroke="#eaf4ff" strokeWidth={1} vectorEffect="non-scaling-stroke" style={{ ['--marker-drop' as string]: `${-14 / flyScale}px`, animationDelay: `${250 + index * 80}ms` } as React.CSSProperties} />
+              </Marker>)}
+            </g>
           </ComposableMap>
           <div className="absolute bottom-4 left-4 flex flex-col overflow-hidden rounded-md border border-white/[0.2] bg-black/50"><button aria-label="Zoom in" onClick={() => setZoom((value) => Math.min(value + .25, 2))} className="border-b border-white/10 p-2 text-neutral-300"><IconPlus size={18} /></button><button aria-label="Zoom out" onClick={() => setZoom((value) => Math.max(value - .25, .7))} className="border-b border-white/10 p-2 text-neutral-300"><IconMinus size={18} /></button><button aria-label="Reset map" onClick={() => { setActiveRegion('World'); setZoom(1); }} className="p-2 text-neutral-300"><IconFocus2 size={18} /></button></div>
         </div>
