@@ -37,7 +37,7 @@ const About = () => {
                   A Glimpse into My World
                 </h3>
                 <p className="text-center">
-                  I’m an photographer and entrepreneur based in Finland. My journey with photography began the moment I picked up my first SLR camera, and I’ve been captivated by the art of capturing light ever since.
+                  I’m Jari Sokka, a photographer and entrepreneur based in Lahti, Finland. My journey with photography began the moment I picked up my first SLR camera, and I’ve been captivated by the art of capturing light ever since.
                   
                   I spend much of my time exploring the woods, seeking to capture those fleeting, magical moments. While I love to travel, the majority of my photographs showcase the stunning beauty of my home country. There’s something truly unique about Finnish nature and its extraordinary light.
 

@@ -53,7 +53,7 @@ const Gallery = () => {
                   width={1500}
                   height={1000}
                   className="h-full w-full object-cover rounded-md group-hover/card:shadow-xl overflow-hidden"
-                  alt={item.category}
+                  alt={`${item.title} - ${item.category} photography by Jari Sokka`}
                 />
               </CardItem>
               <CardItem

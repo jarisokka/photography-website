@@ -1,3 +1,7 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow: /photos /photo
+Allow: /
+Disallow: /photos
+Disallow: /photo
+
+Sitemap: https://jarisokka-photography.com/sitemap.xml
