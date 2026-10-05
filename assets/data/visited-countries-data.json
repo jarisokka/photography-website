@@ -15,7 +15,7 @@
   { "name": "Russia", "region": "Europe", "iso2": "RU" },
   { "name": "Switzerland", "region": "Europe", "iso2": "CH", "visitedYear": 2017 },
   { "name": "Slovenia", "region": "Europe", "iso2": "SI", "visitedYear": 2019 },
-  { "name": "Austria", "region": "Europe", "iso2": "AT" },
+  { "name": "Austria", "region": "Europe", "iso2": "AT", "visitedYear": 2026 },
   { "name": "Greece", "region": "Europe", "iso2": "GR" },
   { "name": "Cyprus", "region": "Europe", "iso2": "CY" },
   { "name": "Estonia", "region": "Europe", "iso2": "EE" },

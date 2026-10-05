@@ -24,5 +24,8 @@
   { "name": "Angkor Wat", "countryIso2": "KH", "coordinates": [103.866667, 13.4125], "imageUrl": "/images/travel/EV2A7329.jpg" },
   { "name": "Watkins Glen", "countryIso2": "US", "coordinates": [-76.87496, 42.37010], "imageUrl": "/images/travel/EV2A5942.jpg" },
   { "name": "Marblehead Lighthouse", "countryIso2": "US", "coordinates": [-82.71214, 41.53669], "imageUrl": "/images/travel/EV2A6103.jpg" },
-  { "name": "Chicago", "countryIso2": "US", "coordinates": [-87.623177, 41.881832], "imageUrl": "/images/travel/EV2A6374.jpg" }
+  { "name": "Chicago", "countryIso2": "US", "coordinates": [-87.623177, 41.881832], "imageUrl": "/images/travel/EV2A6374.jpg" },
+  { "name": "Salzburg", "countryIso2": "AT", "coordinates": [13.055000, 47.800000], "imageUrl": "/images/travel/0L5A0529.jpg" },
+  { "name": "Gosausee", "countryIso2": "AT", "coordinates": [13.495000, 47.533000], "imageUrl": "/images/travel/0L5A1968.jpg" },
+  { "name": "Hallstatt", "countryIso2": "AT", "coordinates": [13.649000, 47.562000], "imageUrl": "/images/travel/0L5A0679.jpg" }
 ]
